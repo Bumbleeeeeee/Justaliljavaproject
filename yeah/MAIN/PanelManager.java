@@ -19,6 +19,25 @@ public class PanelManager extends JPanel{
     this.setDoubleBuffered(true); 
     //this.addKeyListener(keyH);
     this.setFocusable(true);
+  }
+
+  public void start(){
+    ChessRunner.run();
+
     
+
+    repaint();
+  }
+
+
+  public void paintComponent(Graphics g){;
+
+    super.paintComponent(g);
+    Graphics2D g2 = (Graphics2D)g;
+
+    Board.drawBoard(g2);
+    PeiceManager.DrawPieces(g2);
+    
+    g2.dispose();
   }
 }
