@@ -1,5 +1,5 @@
 class ComputerPlayer extends Player {
-
+/* 
   public ComputerPlayer() {
     
   }
@@ -11,5 +11,5 @@ class ComputerPlayer extends Player {
   public int[][] easy() {
     
   } 
-  
+  */
 }

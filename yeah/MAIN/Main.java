@@ -1,7 +1,6 @@
 import java.lang.*;
 import java.util.*;
 import javax.swing.JFrame;
-import java.util.Scanner;
 
 class Main {
   public static void main(String[] args) {

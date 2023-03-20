@@ -1,7 +1,7 @@
 import javax.swing.JPanel;
 import java.awt.*;
 
-public class PanelManager extends Jpanel{
+public class PanelManager extends JPanel{
 
   public final int tileSize = 48;
 
@@ -17,7 +17,7 @@ public class PanelManager extends Jpanel{
     this.setPreferredSize(new Dimension(screenWidth,screenHeight));
     this.setBackground(Color.black);
     this.setDoubleBuffered(true); 
-    this.addKeyListener(keyH);
+    //this.addKeyListener(keyH);
     this.setFocusable(true);
     
   }
