@@ -1,5 +1,3 @@
-import java.lang.*;
-import java.util.*;
 import javax.swing.JFrame;
 
 class Main {
@@ -18,6 +16,6 @@ class Main {
     window.setLocationRelativeTo(null);
     window.setVisible(true);  
     
-    ChessRunner.run();
+    pManage.start();
     }
   }

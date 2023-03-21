@@ -1,34 +1,30 @@
+
+import java.awt.image.BufferedImage;
+import javax.imageio.ImageIO;
+import java.io.*;
+
 class Piece {
 
-  private String symbol;
+  private BufferedImage image;
   private String piece;
   private final boolean w;
   private int moves;
 
-  public Piece(String pi, boolean wh) {
-    piece = pi;
-    w = wh;
+  public Piece(String piece, boolean isWhite) {
+    this.piece = piece;
+    w = isWhite;
     moves = 0;
     
-    if (piece == "K") {
-      if (w) symbol = "♔ "; 
-      else symbol = "♚ ";
-    } else if (piece == "Q") {
-      if (w) symbol = "♕ ";
-      else symbol = "♛ ";
-    } else if (piece == "R") {
-      if (w) symbol = "♖ ";
-      else symbol = "♜ ";
-    } else if (piece == "B") {
-      if (w) symbol = "♗ ";
-      else symbol = "♝ ";
-    } else if (piece == "N") {
-      if (w) symbol = "♘ ";
-      else symbol = "♞ ";
-    } else {
-      if (w) symbol = "♙ ";
-      else symbol = "♟ ";
+    try{
+    image = ImageIO.read(new File("images/CHESS_KING.png"));
+  }
+  catch(IOException e){
+    e.printStackTrace();
     }
+  }
+
+  public BufferedImage getImage(){
+    return image;
   }
 
   public boolean isWhite() {

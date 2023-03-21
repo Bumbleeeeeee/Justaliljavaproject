@@ -1,4 +1,6 @@
 import java.util.*;
+import java.awt.*;
+import java.awt.Color;
 
 class Board {
   private Piece[][] board;
@@ -8,6 +10,39 @@ class Board {
   private boolean enpassant;
   private int[][] lastMove;
 
+  
+  //draws squares on the board, if necessarry may be edited later for images rather than solid colors
+  public static void drawBoard(Graphics2D g2){
+    PanelManager pManage = holder.pManage;
+    boolean flag = true;
+
+    for(int currentRow = 0; currentRow < pManage.screenRows; currentRow++){
+      for(int currentCollumn = 0; currentCollumn < pManage.screenColumns; currentCollumn++){
+          
+          g2.setColor(Color.WHITE);
+          if(flag)
+            g2.setColor(Color.BLACK);
+
+          Rectangle square = new Rectangle(pManage.tileSize,pManage.tileSize);  
+          g2.fill(square);
+          
+          g2.translate(pManage.tileSize,0);
+
+          flag = !flag;
+      }
+      flag = !flag;
+      g2.translate(-(pManage.tileSize * pManage.screenRows),pManage.tileSize);
+    }
+  }
+
+  public Piece[][] getBoard(){
+    return board;
+  }
+
+  
+  
+  
+  
   public Board() {
     board = new Piece[8][8];
     scan = new Scanner(System.in);
@@ -320,5 +355,6 @@ class Board {
     }
     return kingP;
   }
+
   
 }
