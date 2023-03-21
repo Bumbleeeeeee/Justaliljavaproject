@@ -3,7 +3,7 @@ import java.util.*;
 public class ChessRunner{
 
   public static void run(){
-    Board board = new Board();
+    Board board = holder.board;
     Scanner scan = new Scanner(System.in);
     boolean gameActive = true;
     while (gameActive) {

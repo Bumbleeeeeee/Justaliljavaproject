@@ -18,7 +18,6 @@ class Board {
 
     for(int currentRow = 0; currentRow < pManage.screenRows; currentRow++){
       for(int currentCollumn = 0; currentCollumn < pManage.screenColumns; currentCollumn++){
-          
           g2.setColor(Color.WHITE);
           if(flag)
             g2.setColor(Color.BLACK);
@@ -27,7 +26,6 @@ class Board {
           g2.fill(square);
           
           g2.translate(pManage.tileSize,0);
-
           flag = !flag;
       }
       flag = !flag;
