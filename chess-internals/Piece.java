@@ -36,7 +36,7 @@ class Piece {
   }
   
   public String getIcon() {
-    return symbol;
+    return "I";
   }
 
   public void madeAMove() {

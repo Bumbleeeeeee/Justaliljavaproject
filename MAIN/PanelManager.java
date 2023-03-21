@@ -23,9 +23,7 @@ public class PanelManager extends JPanel{
 
   public void start(){
     ChessRunner.run();
-
     
-
     repaint();
   }
 
@@ -36,7 +34,7 @@ public class PanelManager extends JPanel{
     Graphics2D g2 = (Graphics2D)g;
 
     Board.drawBoard(g2);
-    PeiceManager.DrawPieces(g2);
+    //PeiceManager.DrawPieces(g2);
     
     g2.dispose();
   }
