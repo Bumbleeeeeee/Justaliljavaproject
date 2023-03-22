@@ -36,40 +36,14 @@ class Board {
   public Piece[][] getBoard(){
     return board;
   }
-
-  
-  
   
   
   public Board() {
-    board = new Piece[8][8];
+    board = PieceManager.pieceArray;
     scan = new Scanner(System.in);
     castling = false; enpassant = false;
     lastMove = new int[2][2];
     lastMove[0][0] = -1; lastMove[0][1] = -1; lastMove[1][0] = -1; lastMove[1][1] = -1;
-    
-    for (int i = 0; i < board[0].length; i++) {
-      board[1][i] = new Piece("P", false); 
-      board[6][i] = new Piece("P", true); 
-    }
-
-    board[0][0] = new Piece("R", false);
-    board[0][1] = new Piece("N", false);
-    board[0][2] = new Piece("B", false);
-    board[0][3] = new Piece("Q", false);
-    board[0][4] = new Piece("K", false);
-    board[0][5] = new Piece("B", false);
-    board[0][6] = new Piece("N", false);
-    board[0][7] = new Piece("R", false);
-    
-    board[7][0] = new Piece("R", true);
-    board[7][1] = new Piece("N", true);
-    board[7][2] = new Piece("B", true);
-    board[7][3] = new Piece("Q", true);
-    board[7][4] = new Piece("K", true);
-    board[7][5] = new Piece("B", true);
-    board[7][6] = new Piece("N", true);
-    board[7][7] = new Piece("R", true);
 
     whiteT = true;
   }

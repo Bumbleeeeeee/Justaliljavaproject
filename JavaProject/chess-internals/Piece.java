@@ -5,7 +5,7 @@ import java.io.*;
 
 class Piece {
 
-  private BufferedImage image;
+  public BufferedImage image;
   private String piece;
   private final boolean w;
   private int moves;
@@ -16,15 +16,11 @@ class Piece {
     moves = 0;
     
     try{
-    image = ImageIO.read(new File("images/CHESS_KING.png"));
+    image = ImageIO.read(new File("JavaProject/images/CHESS_KING.png"));
   }
   catch(IOException e){
     e.printStackTrace();
     }
-  }
-
-  public BufferedImage getImage(){
-    return image;
   }
 
   public boolean isWhite() {
