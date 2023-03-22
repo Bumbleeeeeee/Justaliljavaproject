@@ -2,8 +2,12 @@ import java.util.*;
 import java.awt.*;
 import java.awt.Color;
 
+import java.awt.image.BufferedImage;
+import javax.imageio.ImageIO;
+import java.io.*;
+
 class Board {
-  private Piece[][] board;
+  private static Piece[][] board;
   boolean whiteT;
   Scanner scan;
   private boolean castling;

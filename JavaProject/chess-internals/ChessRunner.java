@@ -29,13 +29,10 @@ public class ChessRunner{
         System.out.println();
         board.printBoard();
         System.out.println();
-        System.out.println("What are the coordinates of the piece you would like to move? (enter row number first, column number second)");
-        int a = scan.nextInt(), b = scan.nextInt();
-        System.out.println("What are the coordinates of the square you would like to move it to? (enter row number first, column number second)");
-        int c = scan.nextInt(), d = scan.nextInt();
-        //Player player = new Player();
+        Player player = new Player();
         //board.movePiece(player.getMove());
-        board.movePiece(new int[]{a, b}, new int[]{c, d});
+        int[][] move = player.getMove();
+        board.movePiece(move[0], move[1]);
       }
       System.out.println();
     }

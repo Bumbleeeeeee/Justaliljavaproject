@@ -19,10 +19,11 @@ public class PanelManager extends JPanel{
     this.setDoubleBuffered(true); 
     //this.addKeyListener(keyH);
     this.setFocusable(true);
+
+    PieceManager.instantiatePieces();
   }
 
   public void start(){
-    PieceManager.instantiatePieces();
     ChessRunner.run();
     
     repaint();

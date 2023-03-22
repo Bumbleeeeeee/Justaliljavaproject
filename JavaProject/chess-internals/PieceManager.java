@@ -1,15 +1,19 @@
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import javax.imageio.ImageIO;
+import java.io.*;
 
 public class PieceManager {
     public static Piece[][] pieceArray = new Piece[8][8];
 
     public static void instantiatePieces(){
-    for (int i = 0; i < pieceArray[0].length; i++) {
-      pieceArray[1][i] = new Piece("P", false); 
-      pieceArray[6][i] = new Piece("P", true); 
+      for (int i = 0; i < pieceArray[0].length; i++) {
+        pieceArray[1][i] = new Piece("P", false); 
+        pieceArray[6][i] = new Piece("P", true); 
     }
 
-    pieceArray[0][0] = new Piece("R", false);
+    
+      pieceArray[0][0] = new Piece("R", false);
     pieceArray[0][1] = new Piece("N", false);
     pieceArray[0][2] = new Piece("B", false);
     pieceArray[0][3] = new Piece("Q", false);
@@ -39,11 +43,13 @@ public class PieceManager {
         int curX = 0;
         int curY = 0;
 
-        for(Piece[] arr : pieceArray){
-            for(Piece cur : arr){
+      for(Piece[] arr : pieceArray){ 
+          for(Piece cur : arr){
+              if(cur != null){ 
                 BufferedImage currentSprite = cur.sprite;
                 g2.drawImage(currentSprite, curX, curY, pManage.tileSize, pManage.tileSize, null);
-                curX += pManage.tileSize;
+              }
+              curX += pManage.tileSize;
             }
             curY += pManage.tileSize;
             curX = 0;

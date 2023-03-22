@@ -1,4 +1,3 @@
-
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import java.io.*;
@@ -6,14 +5,16 @@ import java.io.*;
 class Piece {
 
   public BufferedImage sprite;
+  private String icon;
   private String piece;
   private final boolean w;
   private int moves;
 
-  public Piece(String piece, boolean isWhite) {
+  public Piece(String piece, boolean isWhite, int moves) {
+    System.out.println(piece + " has been instantiated");
     this.piece = piece;
     w = isWhite;
-    moves = 0;
+    this.moves = moves;
     
     try{
     sprite = ImageIO.read(new File("JavaProject/images/CHESS_KING.png"));
@@ -21,6 +22,30 @@ class Piece {
   catch(IOException e){
     e.printStackTrace();
     }
+
+    if (piece == "K") {
+      if (w) icon = "♔ "; 
+      else icon = "♚ ";
+    } else if (piece == "Q") {
+      if (w) icon = "♕ ";
+      else icon = "♛ ";
+    } else if (piece == "R") {
+      if (w) icon = "♖ ";
+      else icon = "♜ ";
+    } else if (piece == "B") {
+      if (w) icon = "♗ ";
+      else icon = "♝ ";
+    } else if (piece == "N") {
+      if (w) icon = "♘ ";
+      else icon = "♞ ";
+    } else {
+      if (w) icon = "♙ ";
+      else icon = "♟ ";
+    }
+  }
+
+  public Piece(String piece, boolean isWhite) {
+    this(piece, isWhite, 0);
   }
 
   public boolean isWhite() {
@@ -32,7 +57,7 @@ class Piece {
   }
   
   public String getIcon() {
-    return "W";
+    return icon;
   }
 
   public void madeAMove() {
