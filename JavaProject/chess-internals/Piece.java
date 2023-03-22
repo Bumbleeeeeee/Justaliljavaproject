@@ -11,13 +11,37 @@ class Piece {
   private int moves;
 
   public Piece(String piece, boolean isWhite, int moves) {
-    System.out.println(piece + " has been instantiated");
+    System.out.print(piece + " has been instantiated  ");
     this.piece = piece;
     w = isWhite;
     this.moves = moves;
     
     try{
-    sprite = ImageIO.read(new File("JavaProject/images/CHESS_KING.png"));
+      //hehe *steals your code*
+      
+      if (piece == "K") 
+        if (w) sprite = ImageIO.read(new File("JavaProject/images/king_WHITE.png"));
+        else sprite = ImageIO.read(new File("JavaProject/images/king_BLACK.png"));
+
+      else if (piece == "Q") 
+        if (w) sprite = ImageIO.read(new File("JavaProject/images/queen_WHITE.png"));
+        else sprite = ImageIO.read(new File("JavaProject/images/queen_BLACK.png"));
+
+      else if (piece == "R") 
+        if (w) sprite = ImageIO.read(new File("JavaProject/images/rook_WHITE.png"));
+        else sprite = ImageIO.read(new File("JavaProject/images/rook_BLACK.png"));
+
+      else if (piece == "B") 
+        if (w) sprite = ImageIO.read(new File("JavaProject/images/bishop_WHITE.png"));
+        else sprite = ImageIO.read(new File("JavaProject/images/bishop_BLACK.png"));
+
+      else if (piece == "N") 
+        if (w) sprite = ImageIO.read(new File("JavaProject/images/knight_WHITE.png"));
+        else sprite = ImageIO.read(new File("JavaProject/images/knight_BLACK.png"));
+
+      else 
+        if (w) sprite = ImageIO.read(new File("JavaProject/images/pawn_WHITE.png"));
+        else sprite = ImageIO.read(new File("JavaProject/images/pawn_BLACK.png"));    
   }
   catch(IOException e){
     e.printStackTrace();
@@ -67,7 +91,6 @@ class Piece {
   public int getMoves() {
     return moves;
   }
-  
 }
 
 

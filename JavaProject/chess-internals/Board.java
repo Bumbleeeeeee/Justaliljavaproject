@@ -1,7 +1,5 @@
 import java.util.*;
 import java.awt.*;
-import java.awt.Color;
-
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import java.io.*;
@@ -14,28 +12,40 @@ class Board {
   private boolean enpassant;
   private int[][] lastMove;
 
+  public static BufferedImage background;
+
   
   //draws squares on the board, if necessarry may be edited later for images rather than solid colors
   public static void drawBoard(Graphics2D g2){
     PanelManager pManage = holder.pManage;
     boolean flag = true;
 
+    int curX = 0;
+    int curY = 0;
+    
     for(int currentRow = 0; currentRow < pManage.screenRows; currentRow++){
       for(int currentCollumn = 0; currentCollumn < pManage.screenColumns; currentCollumn++){
-          g2.setColor(Color.WHITE);
-          if(flag)
-            g2.setColor(Color.BLACK);
 
-          Rectangle square = new Rectangle(pManage.tileSize,pManage.tileSize);  
-          g2.fill(square);
           
-          g2.translate(pManage.tileSize,0);
+          try{
+            background = ImageIO.read(new File("JavaProject/images/white.png"));
+            if(flag)
+            background = ImageIO.read(new File("JavaProject/images/black.png"));
+          }
+          catch(IOException e){
+            e.printStackTrace();
+            }
+
+          g2.drawImage(background, curX, curY, pManage.tileSize, pManage.tileSize, null);
+          
+          curX += pManage.tileSize;
           flag = !flag;
       }
       flag = !flag;
-      g2.translate(-(pManage.tileSize * pManage.screenRows),pManage.tileSize);
+      curY += pManage.tileSize; curX = 0;
     }
   }
+
 
   public Piece[][] getBoard(){
     return board;
@@ -51,6 +61,7 @@ class Board {
 
     whiteT = true;
   }
+
 
   public void printBoard() {
     boolean flipflop = false;
@@ -69,6 +80,7 @@ class Board {
       flipflop = !flipflop;
     }
   }
+
 
   public boolean movePiece(int[] start, int[] end) {
     castling = false; enpassant = false;

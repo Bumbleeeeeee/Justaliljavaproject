@@ -12,8 +12,7 @@ public class PieceManager {
         pieceArray[6][i] = new Piece("P", true); 
     }
 
-    
-      pieceArray[0][0] = new Piece("R", false);
+    pieceArray[0][0] = new Piece("R", false);
     pieceArray[0][1] = new Piece("N", false);
     pieceArray[0][2] = new Piece("B", false);
     pieceArray[0][3] = new Piece("Q", false);
@@ -38,17 +37,24 @@ public class PieceManager {
   
   
     public static void DrawPieces(Graphics2D g2){
-        PanelManager pManage = holder.pManage;
+      System.out.println("DRAWING PIECES");
+      
+      PanelManager pManage = holder.pManage;
 
-        int curX = 0;
-        int curY = 0;
+      int curX = 0;
+      int curY = 0;
 
       for(Piece[] arr : pieceArray){ 
           for(Piece cur : arr){
-              if(cur != null){ 
+            System.out.println(cur);  
+
+            if(cur != null){ 
+                System.out.println("DRAWING :D");
                 BufferedImage currentSprite = cur.sprite;
+                System.out.println(currentSprite);
                 g2.drawImage(currentSprite, curX, curY, pManage.tileSize, pManage.tileSize, null);
               }
+
               curX += pManage.tileSize;
             }
             curY += pManage.tileSize;

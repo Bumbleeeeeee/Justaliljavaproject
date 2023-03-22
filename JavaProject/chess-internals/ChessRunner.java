@@ -4,7 +4,6 @@ public class ChessRunner{
 
   public static void run(){
     Board board = holder.board;
-    Scanner scan = new Scanner(System.in);
     boolean gameActive = true;
     while (gameActive) {
       int status = board.checkStatus(board.isWhiteTurn());
