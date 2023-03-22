@@ -49,7 +49,6 @@ public class PieceManager {
             System.out.println(cur);  
 
             if(cur != null){ 
-                System.out.println("DRAWING :D");
                 BufferedImage currentSprite = cur.sprite;
                 System.out.println(currentSprite);
                 g2.drawImage(currentSprite, curX, curY, pManage.tileSize, pManage.tileSize, null);

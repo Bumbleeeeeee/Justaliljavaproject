@@ -1,9 +1,14 @@
 Monday, March 20
-    5:30PM - 
+    5:30PM - 7:00PM
 Bee: 
     added board drawing within JPanel / began on piece drawing
 
 Tuesday. March 21
-  8:00AM - 2:50PM (school)
+    8:00AM - 2:50PM (school)
 Bee: 
     broke everything for several hours / fixed everything
+
+Wednesday, March 22
+    5:00PM - 7:30PM
+Bee:
+    implimented drawing of pieces onto board from 2d array / Redid board texture and drawing / implimented new textures for pieces 
