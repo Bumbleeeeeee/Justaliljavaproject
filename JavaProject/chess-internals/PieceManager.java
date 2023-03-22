@@ -41,7 +41,8 @@ public class PieceManager {
 
         for(Piece[] arr : pieceArray){
             for(Piece cur : arr){
-                g2.drawImage(cur.image, curX, curY, pManage.tileSize, pManage.tileSize, null);
+                BufferedImage currentSprite = cur.sprite;
+                g2.drawImage(currentSprite, curX, curY, pManage.tileSize, pManage.tileSize, null);
                 curX += pManage.tileSize;
             }
             curY += pManage.tileSize;

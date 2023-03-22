@@ -5,7 +5,7 @@ import java.io.*;
 
 class Piece {
 
-  public BufferedImage image;
+  public BufferedImage sprite;
   private String piece;
   private final boolean w;
   private int moves;
@@ -16,7 +16,7 @@ class Piece {
     moves = 0;
     
     try{
-    image = ImageIO.read(new File("JavaProject/images/CHESS_KING.png"));
+    sprite = ImageIO.read(new File("JavaProject/images/CHESS_KING.png"));
   }
   catch(IOException e){
     e.printStackTrace();
