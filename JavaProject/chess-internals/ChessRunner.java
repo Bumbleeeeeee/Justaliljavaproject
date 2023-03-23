@@ -1,5 +1,3 @@
-import java.util.*;
-
 public class ChessRunner{
 
   public static void run(){

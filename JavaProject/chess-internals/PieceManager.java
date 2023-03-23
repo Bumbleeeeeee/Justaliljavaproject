@@ -1,10 +1,9 @@
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import javax.imageio.ImageIO;
-import java.io.*;
 
 public class PieceManager {
     public static Piece[][] pieceArray = new Piece[8][8];
+    public static int[] curSelection;
 
     public static void instantiatePieces(){
       for (int i = 0; i < pieceArray[0].length; i++) {
@@ -32,10 +31,21 @@ public class PieceManager {
     }
 
 
-    public static void selectPiece(int X, int Y){
+    public static void onClick(int X, int Y){
+      Piece piece = holder.board.getBoard()[Y][X];
       
+      if (isPiece(X,Y) && (piece == null || holder.board.whiteT == piece.isWhite())) 
+        if(curSelection == null || !(curSelection[0] == Y && curSelection[1] == X))
+          curSelection = new int[]{Y,X};
     }
-  
+
+    public static boolean isPiece(int X, int Y){
+      for(int curY = 0; curY < pieceArray.length; curY++)
+        for(int curX = 0; curX < pieceArray.length; curX++)
+          if((curX == X && curY == Y) && pieceArray[curY][curX] != null)
+            return true;
+      return false;
+    }
   
   
   

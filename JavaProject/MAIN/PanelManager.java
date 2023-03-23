@@ -5,7 +5,7 @@ import java.lang.Runnable;
 public class PanelManager extends JPanel implements Runnable{
 
   public final int tileSize = 48;
-  public final int FPS = 16;
+  public final int FPS = 20;
   public final int screenRows = 8;
   public final int screenColumns = 8;
 

@@ -4,6 +4,9 @@ import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import java.io.*;
 
+import java.awt.Color;
+import java.awt.Rectangle;
+
 class Board {
   private static Piece[][] board;
   boolean whiteT;
@@ -37,6 +40,15 @@ class Board {
             }
 
           g2.drawImage(background, curX, curY, pManage.tileSize, pManage.tileSize, null);
+
+          //draws selection square, tbd if this works
+          if(PieceManager.curSelection != null && ((PieceManager.curSelection[0] * 48) == curY && (PieceManager.curSelection[1] * 48) == curX)){
+            Color color = new Color(0, 123, 255, 126); 
+            g2.setPaint(color);
+          
+            Rectangle Square = new Rectangle(curX, curY, pManage.tileSize,pManage.tileSize);
+            g2.fill(Square);
+          }
           
           curX += pManage.tileSize;
           flag = !flag;
@@ -143,6 +155,34 @@ class Board {
     return true;
     
   }
+
+  //////////////////////////////////////////////////////////////////////
+  //i added this for my selfish use hehe
+  //hope you dont mind :D
+  
+  public boolean moveCheck(int[] start, int[] end){
+  //not on board
+    if (!(((start[0] < 8) && (start[0] >= 0)) && ((start[1] < 8) && (start[1] >= 0)) && ((end[0] < 8) && (end[0] >= 0)) && ((end[1] < 8) && (end[1] >= 0))))
+      return false;
+    
+  //not players piece
+    Piece piece = board[start[0]][start[1]];
+    if (piece == null || whiteT != piece.isWhite()) 
+      return false;
+
+  //is move valid
+    if (!moveValid(start, end, whiteT)) 
+      return false;
+
+  //checkcheck
+    if (checkforCheck(findKing(whiteT), whiteT)) 
+      return false;
+
+  
+    return true;
+  }
+
+  ////////////////////////////////////////////////////////////////////////////////
 
   public int checkStatus(boolean wT) {
 
