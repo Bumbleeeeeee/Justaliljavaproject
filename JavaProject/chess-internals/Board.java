@@ -82,6 +82,7 @@ class Board {
   }
 
 
+  //start = (y,x); end = (y,x)
   public boolean movePiece(int[] start, int[] end) {
     castling = false; enpassant = false;
     if (!(((start[0] < 8) && (start[0] >= 0)) && ((start[1] < 8) && (start[1] >= 0)) && ((end[0] < 8) && (end[0] >= 0)) && ((end[1] < 8) && (end[1] >= 0)))) {

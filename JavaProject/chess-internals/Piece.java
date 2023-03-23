@@ -11,7 +11,6 @@ class Piece {
   private int moves;
 
   public Piece(String piece, boolean isWhite, int moves) {
-    System.out.print(piece + " has been instantiated  ");
     this.piece = piece;
     w = isWhite;
     this.moves = moves;
