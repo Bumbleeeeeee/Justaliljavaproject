@@ -53,7 +53,7 @@ public class PieceManager {
   
     public static void DrawPieces(Graphics2D g2){
       
-      PanelManager pManage = holder.pManage;
+      GameRunner gRun = holder.gRun;
 
       int curX = 0;
       int curY = 0;
@@ -63,12 +63,12 @@ public class PieceManager {
 
             if(cur != null){ 
                 BufferedImage currentSprite = cur.sprite;
-                g2.drawImage(currentSprite, curX, curY, pManage.tileSize, pManage.tileSize, null);
+                g2.drawImage(currentSprite, curX, curY, gRun.tileSize, gRun.tileSize, null);
               }
 
-              curX += pManage.tileSize;
+              curX += gRun.tileSize;
             }
-            curY += pManage.tileSize;
+            curY += gRun.tileSize;
             curX = 0;
         }
     }

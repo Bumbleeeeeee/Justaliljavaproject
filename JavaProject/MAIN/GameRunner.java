@@ -2,7 +2,7 @@ import javax.swing.JPanel;
 import java.awt.*;
 import java.lang.Runnable;
 
-public class PanelManager extends JPanel implements Runnable{
+public class GameRunner extends JPanel implements Runnable{
 
   public final int tileSize = 48;
   public final double FPS = 3.25;
@@ -15,7 +15,7 @@ public class PanelManager extends JPanel implements Runnable{
   Thread gameThread;
   
 
-  public PanelManager(){
+  public GameRunner(){
 
     this.setPreferredSize(new Dimension(screenWidth,screenHeight));
     this.setBackground(Color.black);

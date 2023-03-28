@@ -2,20 +2,20 @@ import java.awt.event.MouseListener;
 import java.awt.event.*;
 public class ClickListener implements MouseListener {
 
-public PanelManager pManage = holder.pManage;
+public GameRunner gRun = holder.gRun;
 //hehe steals code
         
 //where initialization occurs:
 //Register for mouse events on blankArea and the panel.
     public ClickListener(){    
-        pManage.addMouseListener(this);
+        gRun.addMouseListener(this);
     }
 
   
   //maybe not needed
   public void mousePressed(MouseEvent e) {
-    int Xselect = e.getX() / pManage.tileSize;
-    int Yselect = e.getY() / pManage.tileSize;
+    int Xselect = e.getX() / gRun.tileSize;
+    int Yselect = e.getY() / gRun.tileSize;
     System.out.println("Mouse clicked (# of clicks: " + e.getClickCount() + ")" + "\n\t@ " + (Xselect) + ", " + (Yselect));
     
     if(PieceManager.curSelection == null)

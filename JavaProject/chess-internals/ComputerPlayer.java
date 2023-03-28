@@ -31,13 +31,14 @@ class ComputerPlayer extends Player {
   }
 
   private ArrayList<int[][]> getPossibleMoves(boolean white) {
+    Verifier verify = new Verifier(board.board, white, board.lastMove);
     ArrayList<int[][]> moves = new ArrayList<int[][]>();
     ArrayList<int[]> pieces = getPieces(white);
     for (int i = 0; i < pieces.size(); i++) {
       for (int j = 0; j < 8; j++) {
         for (int k = 0; k < 8; k++) {
           int[] mto = {j, k};
-          if (board.moveValid(pieces.get(i), mto)) {
+          if (verify.moveValid(pieces.get(i), mto)) {
             moves.add(new int[][] {pieces.get(i), mto});
           }
         }
@@ -45,5 +46,7 @@ class ComputerPlayer extends Player {
     }
     return moves;
   }
+
+  
 
 }

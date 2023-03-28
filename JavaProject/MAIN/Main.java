@@ -3,19 +3,18 @@ import javax.swing.JFrame;
 class Main {
   public static void main(String[] args) {
   
-    JFrame window = new JFrame();
+    MainWindow window = new MainWindow();
+    
     window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     window.setResizable(false);
 
-    PanelManager pManage = holder.pManage;
-    window.add(pManage);
+    GameRunner gRun = holder.gRun;
+
     window.pack();
 
-    
-
-    window.setLocationRelativeTo(null);
     window.setVisible(true);  
+    window.setLocationRelativeTo(null);
     
-    pManage.start();
+    gRun.start();
     }
   }
