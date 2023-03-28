@@ -18,7 +18,7 @@ class Board {
   public static BufferedImage background;
 
   
-  //draws squares on the board, if necessarry may be edited later for images rather than solid colors
+  //draws squares on the board
   public static void drawBoard(Graphics2D g2){
     PanelManager pManage = holder.pManage;
     boolean flag = true;
@@ -73,8 +73,7 @@ class Board {
 
     whiteT = true;
   }
-
-
+  
   public void printBoard() {
     boolean flipflop = false;
     System.out.println("  0 1 2 3 4 5 6 7");
@@ -93,9 +92,42 @@ class Board {
     }
   }
 
+  public boolean movePiece(int[] start, int[] end) {
+
+    Piece piece = board[start[0]][start[1]];
+    if (!moveValid(start, end)) {
+      castling = false; enpassant = false;
+      return false;
+    }
+    board[start[0]][start[1]] = null;
+    Piece temp = board[end[0]][end[1]];
+    board[end[0]][end[1]] = piece;
+    if (castling) {
+      if (end[1] == 2) {board[end[0]][3] = board[end[0]][0]; board[end[0]][0] = null;}
+      else if (end[1] == 6) {board[end[0]][5] = board[end[0]][7]; board[end[0]][7] = null;}
+    }
+    if (enpassant) {
+      board[start[0]][end[1]] = null;
+    }
+    
+    if (piece.getType() == "P" && ((end[0] == 0 && piece.isWhite() == true) || (end[0] == 7 && piece.isWhite() == false))) {
+      System.out.println("What would you like to promote your pawn to? (enter Q for queen, N for knight, or R for rook)");
+      String hat = scan.nextLine();
+      hat = hat.toUpperCase();
+      if (hat.equals("R")) board[end[0]][end[1]] = new Piece("R", piece.isWhite());
+      else if (hat.equals("N")) board[end[0]][end[1]] = new Piece("N", piece.isWhite());
+      else board[end[0]][end[1]] = new Piece("Q", piece.isWhite());
+    }
+    
+    whiteT = !whiteT;
+    board[end[0]][end[1]].madeAMove();
+    lastMove[0] = start; lastMove[1] = end;
+    castling = false; enpassant = false;
+    return true;
+  }
 
   //start = (y,x); end = (y,x)
-  public boolean movePiece(int[] start, int[] end) {
+  public boolean moveValid(int[] start, int[] end) {
     castling = false; enpassant = false;
     if (!(((start[0] < 8) && (start[0] >= 0)) && ((start[1] < 8) && (start[1] >= 0)) && ((end[0] < 8) && (end[0] >= 0)) && ((end[1] < 8) && (end[1] >= 0)))) {
       reportError("That's not a position on the board!");
@@ -108,7 +140,7 @@ class Board {
       return false;
     }
 
-    if (!moveValid(start, end, whiteT)) {
+    if (!checkStage1(start, end, whiteT)) {
       reportError("That's not a valid move!");
       return false;
     }
@@ -130,8 +162,8 @@ class Board {
       board[start[0]][start[1]] = piece;
       board[end[0]][end[1]] = temp;
       if (castling) {
-        if (end[0] == 2) {board[end[0]][0] = board[end[0]][3]; board[end[0]][3] = null;}
-        else if (end[0] == 6) {board[end[0]][7] = board[end[0]][5]; board[end[0]][5] = null;}
+        if (end[1] == 2) {board[end[0]][0] = board[end[0]][3]; board[end[0]][3] = null;}
+        else if (end[1] == 6) {board[end[0]][7] = board[end[0]][5]; board[end[0]][5] = null;}
       }
       if (enpassant) {
         board[start[0]][end[1]] = new Piece("P", !whiteT);
@@ -139,21 +171,16 @@ class Board {
       return false;
     }
     
-    if (piece.getType() == "P" && ((end[0] == 0 && piece.isWhite() == true) || (end[0] == 7 && piece.isWhite() == false))) {
-      System.out.println("What would you like to promote your pawn to? (enter Q for queen, N for knight, or R for rook)");
-      String hat = scan.nextLine();
-      hat = hat.toUpperCase();
-      if (hat.equals("R")) board[end[0]][end[1]] = new Piece("R", piece.isWhite());
-      else if (hat.equals("N")) board[end[0]][end[1]] = new Piece("N", piece.isWhite());
-      else board[end[0]][end[1]] = new Piece("Q", piece.isWhite());
+    board[start[0]][start[1]] = piece;
+    board[end[0]][end[1]] = temp;
+    if (castling) {
+      if (end[1] == 2) {board[end[0]][0] = board[end[0]][3]; board[end[0]][3] = null;}
+      else if (end[1] == 6) {board[end[0]][7] = board[end[0]][5]; board[end[0]][5] = null;}
     }
-      
-    whiteT = !whiteT;
-    board[end[0]][end[1]].madeAMove();
-    lastMove[0] = start; lastMove[1] = end;
-    castling = false; enpassant = false;
+    if (enpassant) {
+      board[start[0]][end[1]] = new Piece("P", !whiteT);
+    }
     return true;
-    
   }
 
   //////////////////////////////////////////////////////////////////////
@@ -171,7 +198,7 @@ class Board {
       return false;
 
   //is move valid
-    if (!moveValid(start, end, whiteT)) 
+    if (!checkStage1(start, end, whiteT)) 
       return false;
 
   //checkcheck
@@ -199,7 +226,7 @@ class Board {
             for (int b = 0; b < 8; b++) {
               int[] start = {i, j}; int[] end = {a, b};
               //System.out.println("i: " + i + " j: " + j + " a: " + a + " b: " + b);
-              if (moveValid(start, end, wT)) {
+              if (checkStage1(start, end, wT)) {
                 board[i][j] = null;
                 Piece temp = board[a][b];
                 board[a][b] = piece;
@@ -232,11 +259,11 @@ class Board {
   }
 
   private void reportError(String msg){
-    System.out.println(msg);
+    //System.out.println(msg);
   }
 
 
-  private boolean moveValid(int[] start, int[] end, boolean wT) {
+  private boolean checkStage1(int[] start, int[] end, boolean wT) {
     Piece piece = board[start[0]][start[1]];
     String type = piece.getType();
     
@@ -347,10 +374,7 @@ class Board {
         castling = true;
         return true;
         }
-        
       }
-
-
       return false;
     }
 
@@ -363,7 +387,7 @@ class Board {
       for (int j = 0; j < 8; j++) {
         if (board[i][j] != null && board[i][j].isWhite() != isW) {
           int[] enter = {i, j};
-          if (moveValid(enter, kingPos, !isW)) {
+          if (checkStage1(enter, kingPos, !isW)) {
             return true;
           }
         }
@@ -383,6 +407,10 @@ class Board {
       }
     }
     return kingP;
+  }
+
+  public int[][] getLastMove() {
+    return lastMove;
   }
 
   

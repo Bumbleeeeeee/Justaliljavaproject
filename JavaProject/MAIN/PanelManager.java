@@ -5,7 +5,7 @@ import java.lang.Runnable;
 public class PanelManager extends JPanel implements Runnable{
 
   public final int tileSize = 48;
-  public final int FPS = 20;
+  public final double FPS = 3.25;
   public final int screenRows = 8;
   public final int screenColumns = 8;
 
@@ -20,7 +20,6 @@ public class PanelManager extends JPanel implements Runnable{
     this.setPreferredSize(new Dimension(screenWidth,screenHeight));
     this.setBackground(Color.black);
     this.setDoubleBuffered(true); 
-    //this.addKeyListener(keyH);
     this.setFocusable(true);
 
     PieceManager.instantiatePieces();

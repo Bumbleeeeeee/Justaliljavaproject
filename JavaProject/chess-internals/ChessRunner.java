@@ -26,7 +26,9 @@ public class ChessRunner{
         System.out.println();
         board.printBoard();
         System.out.println();
-        Player player = new Player();
+        Player player;
+        if (board.isWhiteTurn()) player = new Player();
+        else player = new ComputerPlayer(board);
         //board.movePiece(player.getMove());
         int[][] move = player.getMove();
         board.movePiece(move[0], move[1]);
