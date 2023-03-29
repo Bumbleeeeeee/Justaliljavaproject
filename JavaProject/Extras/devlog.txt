@@ -1,32 +1,36 @@
 Monday, March 20
-    5:30PM - 7:00PM
 Bee: 
+    5:30PM - 7:00PM
     added board drawing within JPanel / began on piece drawing
 
 Tuesday. March 21
-    8:00AM - 2:50PM (school)
 Bee: 
+    8:00AM - 2:50PM (school)
     broke everything for several hours / fixed everything
 Minh:
     2:20PM - 2:50PM (school)
     altered stuff in code, brainstormed/researched ai algorithm (minimax?)
 
 Wednesday, March 22
-    5:00PM - 7:30PM
 Bee:
+    5:00PM - 7:30PM
     implimented drawing of pieces onto board from 2d array / Redid board texture and drawing / implimented new textures for pieces 
 
 Sunday, March 27
-    2:00PM - 4:00PM
 Minh:
+    2:00PM - 4:00PM
     worked on easy algorithm + still brainstorming how to do recursion necessary for minimax -> easy algorithm will most likely need to be scrapped, erroring
 
 Monday, March 28
-    3:40PM - 4:30PM, 7:00PM-8:00PM
 Minh:
+     3:40PM - 4:30PM, 7:00PM-8:00PM
     completed randomized move picking "ai" for chess engine
 
 Tuesday, March 29
-    1:30PM - 2:50PM
 Minh: 
+    1:30PM - 2:50PM 
     split Board class into Board + Verifier class in order to prep for minimax recursion
+    
+Bee:
+    4:00PM - 9:20PM
+    Implimented a second window along with the response on selection of an element; still needs reworks, but is in a working state
