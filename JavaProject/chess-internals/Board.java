@@ -108,11 +108,8 @@ class Board {
     
     if (piece.getType() == "P" && ((end[0] == 0 && piece.isWhite() == true) || (end[0] == 7 && piece.isWhite() == false))) {
       System.out.println("What would you like to promote your pawn to? (enter Q for queen, N for knight, or R for rook)");
-      String hat = scan.nextLine();
-      hat = hat.toUpperCase();
-      if (hat.equals("R")) board[end[0]][end[1]] = new Piece("R", piece.isWhite());
-      else if (hat.equals("N")) board[end[0]][end[1]] = new Piece("N", piece.isWhite());
-      else board[end[0]][end[1]] = new Piece("Q", piece.isWhite());
+      SubWindow tempWin = new SubWindow(piece, end[0], end[1]);
+      tempWin.constructSubWindow();
     }
     
     whiteT = !whiteT;

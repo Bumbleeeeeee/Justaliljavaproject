@@ -23,7 +23,6 @@ public class GameRunner extends JPanel implements Runnable{
     this.setFocusable(true);
 
     PieceManager.instantiatePieces();
-    ClickListener cListen = holder.cListen;
   }
 
 

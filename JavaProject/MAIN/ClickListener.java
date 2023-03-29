@@ -7,9 +7,7 @@ public GameRunner gRun = holder.gRun;
         
 //where initialization occurs:
 //Register for mouse events on blankArea and the panel.
-    public ClickListener(){    
-        gRun.addMouseListener(this);
-    }
+    public ClickListener(){}
 
   
   //maybe not needed

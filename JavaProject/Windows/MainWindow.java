@@ -1,12 +1,22 @@
 import javax.swing.JFrame;
-import java.awt.*;
 
 public class MainWindow extends JFrame{
-  JFrame window;
+  static JFrame window;
   
-  public MainWindow(){
+  public static void constructWindow(){
     window = new JFrame();
+    
+    window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    window.setResizable(true);
 
-    window.add(holder.gRun);
+    GameRunner gRun = holder.gRun;
+    window.add(gRun);
+
+    window.pack();
+
+    window.setVisible(true);  
+    window.setLocationRelativeTo(null);
+
+    holder.gRun.addMouseListener(holder.cListen);
+    }
   }
-}

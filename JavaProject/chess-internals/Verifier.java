@@ -1,7 +1,4 @@
-import java.util.*;
-import java.awt.*;
-
-class Verifier {
+public class Verifier {
 
   public Piece[][] board;
   public boolean whiteT;
@@ -74,7 +71,7 @@ class Verifier {
   }
 
   private void reportError(String msg){
-    //System.out.println(msg);
+    System.out.println(msg);
   }
 
   public boolean checkStage1(int[] start, int[] end, boolean wT) {

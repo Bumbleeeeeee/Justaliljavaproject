@@ -1,4 +1,3 @@
-import java.lang.*;
 import java.util.*;
 
 class ComputerPlayer extends Player {

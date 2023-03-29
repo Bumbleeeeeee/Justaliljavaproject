@@ -1,20 +1,14 @@
-import javax.swing.JFrame;
 
 class Main {
   public static void main(String[] args) {
   
-    MainWindow window = new MainWindow();
+    holder.gRun = new GameRunner();
+    holder.board = new Board();
+    holder.cListen = new ClickListener();
     
-    window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    window.setResizable(false);
-
+    MainWindow.constructWindow();
+    
     GameRunner gRun = holder.gRun;
-
-    window.pack();
-
-    window.setVisible(true);  
-    window.setLocationRelativeTo(null);
-    
     gRun.start();
     }
   }
