@@ -29,10 +29,11 @@ public class SubWindow extends JFrame{
     System.out.println("yipeeeeeeeeeeeeee");
     subWindow = new JFrame();
     subWindow.setTitle("Promote Pawn!");
-    subWindow.setLocation(0,0);
-    subWindow.setLocationRelativeTo(MainWindow.window);
     
-    subWindow.setSize(400,105);
+    subWindow.setLocationRelativeTo(MainWindow.window);
+    subWindow.setLocation(0,0);
+    
+    subWindow.setSize(384,105);
     subWindow.setResizable(false);
     
     subWindow.setUndecorated(true);
@@ -50,7 +51,7 @@ public class SubWindow extends JFrame{
     JButton optionC = new JButton(getKnightSprite());
     JButton optionD = new JButton(getRookSprite());
     
-    optionA.setBounds(0,0,100,105); optionB.setBounds(100,0,100,105); optionC.setBounds(200,0,100,105); optionD.setBounds(300,0,100,105);
+    optionA.setBounds(0,0,96,105); optionB.setBounds(96,0,96,105); optionC.setBounds(192,0,96,105); optionD.setBounds(288,0,96,105);
 
     optionA.setFocusPainted(false); optionB.setFocusPainted(false); optionC.setFocusPainted(false); optionD.setFocusPainted(false);
     
