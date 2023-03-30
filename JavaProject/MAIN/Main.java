@@ -6,7 +6,7 @@ class Main {
     holder.board = new Board();
     holder.cListen = new ClickListener();
     
-    MainWindow.constructWindow();
+    MainWindow window = new MainWindow();
     
     GameRunner gRun = holder.gRun;
     gRun.start();

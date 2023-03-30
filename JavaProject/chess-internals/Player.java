@@ -1,6 +1,6 @@
 //pretty sure this is depricated
 
-/*import java.util.Scanner;
+import java.util.Scanner;
 class Player {
 
   Scanner scan = new Scanner(System.in);
@@ -14,5 +14,5 @@ class Player {
     int c = scan.nextInt(), d = scan.nextInt();
     return (new int[][]{{a, b}, {c, d}});
   } 
+}
   
-}*/

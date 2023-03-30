@@ -1,22 +1,24 @@
+import java.awt.BorderLayout;
+
 import javax.swing.JFrame;
 
 public class MainWindow extends JFrame{
-  static JFrame window;
   
-  public static void constructWindow(){
-    window = new JFrame();
+  public MainWindow(){
     
-    window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    window.setResizable(false);
+    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    this.setResizable(false);
 
     GameRunner gRun = holder.gRun;
-    window.add(gRun);
+    this.add(gRun,BorderLayout.CENTER);
 
-    window.pack();
+    this.pack();
 
-    window.setVisible(true);  
-    window.setLocationRelativeTo(null);
+    this.setVisible(true);  
+    this.setLocationRelativeTo(null);
 
     holder.gRun.addMouseListener(holder.cListen);
+
+    holder.window = this;
     }
   }

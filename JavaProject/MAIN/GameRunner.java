@@ -5,7 +5,7 @@ import java.lang.Runnable;
 public class GameRunner extends JPanel implements Runnable{
 
   public final int tileSize = 48;
-  public final double FPS = 3.25;
+  public final double FPS = 10;
   public final int screenRows = 8;
   public final int screenColumns = 8;
 
@@ -20,7 +20,6 @@ public class GameRunner extends JPanel implements Runnable{
     this.setPreferredSize(new Dimension(screenWidth,screenHeight));
     this.setBackground(Color.black);
     this.setDoubleBuffered(true); 
-    this.setFocusable(true);
 
     PieceManager.instantiatePieces();
   }
@@ -46,7 +45,7 @@ public class GameRunner extends JPanel implements Runnable{
 
       lastTime = currentTime;
 
-      if(delta >= 1){
+      if(delta >= 1 && !SubWindow.subWindowExists){
         update();
         repaint();
         delta--;

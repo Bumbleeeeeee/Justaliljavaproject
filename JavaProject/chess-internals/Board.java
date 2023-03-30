@@ -108,7 +108,7 @@ class Board {
     
     if (piece.getType() == "P" && ((end[0] == 0 && piece.isWhite() == true) || (end[0] == 7 && piece.isWhite() == false))) {
       System.out.println("What would you like to promote your pawn to? (enter Q for queen, N for knight, or R for rook)");
-      SubWindow tempWin = new SubWindow(piece, end[0], end[1]);
+      SubWindow tempWin = new SubWindow(piece, end[0], end[1], holder.window);
       tempWin.constructSubWindow();
     }
     
