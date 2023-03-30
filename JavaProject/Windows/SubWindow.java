@@ -1,6 +1,10 @@
 import javax.swing.JFrame;
 import javax.swing.JButton;
+import javax.swing.*;
 import java.awt.Color;
+import java.awt.image.BufferedImage;
+import javax.imageio.ImageIO;
+import java.io.*;
 
 //for helper
 import java.awt.event.ActionListener;
@@ -28,8 +32,11 @@ public class SubWindow extends JFrame{
     subWindow.setLocation(0,0);
     subWindow.setLocationRelativeTo(MainWindow.window);
     
-    subWindow.setSize(600,200);
+    subWindow.setSize(400,105);
     subWindow.setResizable(false);
+    
+    subWindow.setUndecorated(true);
+    
     subWindow.setVisible(true);
 
     subWindow.setBackground(Color.black);
@@ -38,11 +45,21 @@ public class SubWindow extends JFrame{
 
     subWindow.setLayout(null);
     
-    JButton optionA = new JButton("butonny");
-    JButton optionB = new JButton("its a button, but 2");
-    JButton optionC = new JButton("a pirates favorite letter");
-    JButton optionD = new JButton("OMG its a button again, what a coincidence");
-    optionA.setBounds(0,0,150,200); optionB.setBounds(150,0,150, 200); optionC.setBounds(300,0,150,200); optionD.setBounds(450,0,150, 200); 
+    JButton optionA = new JButton(getQueenSprite());
+    JButton optionB = new JButton(getBishopSprite());
+    JButton optionC = new JButton(getKnightSprite());
+    JButton optionD = new JButton(getRookSprite());
+    
+    optionA.setBounds(0,0,100,105); optionB.setBounds(100,0,100,105); optionC.setBounds(200,0,100,105); optionD.setBounds(300,0,100,105);
+
+    optionA.setFocusPainted(false); optionB.setFocusPainted(false); optionC.setFocusPainted(false); optionD.setFocusPainted(false);
+    
+    
+    if(piece.w){
+optionA.setBackground(Color.black); optionB.setBackground(Color.black); optionC.setBackground(Color.black); optionD.setBackground(Color.black);}
+    else{
+    optionA.setBackground(Color.white); optionB.setBackground(Color.white); optionC.setBackground(Color.white); optionD.setBackground(Color.white);}
+      
     
     subWindow.add(optionA);
     subWindow.add(optionB);
@@ -99,6 +116,65 @@ public class SubWindow extends JFrame{
         Board.board[locationY][locationX] = new Piece("R", piece.isWhite());
         subWindow.dispose();
       }
+      dispose();
     }
+  }
+
+  public ImageIcon getQueenSprite(){
+    BufferedImage image = null; 
+    
+    try{
+        if(piece.w)    
+          image = ImageIO.read(new File("JavaProject/images/queen_WHITE.png"));
+        else
+          image = ImageIO.read(new File("JavaProject/images/queen_BLACK.png"));}
+      
+    catch(IOException e){
+        e.printStackTrace();}
+    return new ImageIcon(image);
+  }
+
+  public ImageIcon getRookSprite(){
+    BufferedImage image = null; 
+    
+    try{
+        if(piece.w)    
+          image = ImageIO.read(new File("JavaProject/images/rook_WHITE.png"));
+        else
+          image = ImageIO.read(new File("JavaProject/images/rook_BLACK.png"));}
+      
+    catch(IOException e){
+        e.printStackTrace();}
+    return new ImageIcon(image);
+  }
+
+  public ImageIcon getKnightSprite(){
+    BufferedImage image = null; 
+    
+    try{
+        if(piece.w)    
+          image = ImageIO.read(new File("JavaProject/images/knight_WHITE.png"));
+        else
+          image = ImageIO.read(new File("JavaProject/images/knight_BLACK.png"));}
+      
+    catch(IOException e){
+        e.printStackTrace();}
+    
+    return new ImageIcon(image);
+  }
+
+  public ImageIcon getBishopSprite(){
+    BufferedImage image = null; 
+    
+    try{
+        if(piece.w)    
+          image = ImageIO.read(new File("JavaProject/images/bishop_WHITE.png"));
+        else
+          image = ImageIO.read(new File("JavaProject/images/bishop_BLACK.png"));}
+      
+    catch(IOException e){
+        e.printStackTrace();}
+    
+    return new ImageIcon(image);
   }
 }

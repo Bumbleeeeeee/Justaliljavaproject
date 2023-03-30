@@ -71,7 +71,7 @@ public class Verifier {
   }
 
   private void reportError(String msg){
-    System.out.println(msg);
+    //System.out.println(msg);
   }
 
   public boolean checkStage1(int[] start, int[] end, boolean wT) {

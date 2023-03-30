@@ -7,7 +7,7 @@ public class MainWindow extends JFrame{
     window = new JFrame();
     
     window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    window.setResizable(true);
+    window.setResizable(false);
 
     GameRunner gRun = holder.gRun;
     window.add(gRun);

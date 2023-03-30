@@ -7,7 +7,7 @@ class Piece {
   public BufferedImage sprite;
   private String icon;
   private String piece;
-  private final boolean w;
+  public final boolean w;
   private int moves;
 
   public Piece(String piece, boolean isWhite, int moves) {
