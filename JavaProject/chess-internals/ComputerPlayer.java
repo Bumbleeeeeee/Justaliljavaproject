@@ -79,17 +79,16 @@ class ComputerPlayer extends Player {
     board = hat;
   }
 
- public int[][] getMove() {
+ /*public int[][] getMove() {
    //working levels: 1, 2
-   /*planned levels:
-      0 - level baby, random chaos it'll be great >:D
-      1 - random move picker 
-      2 - evaluate based on best possible pos score, depth 1
-      3 - depth 3
-      4 - depth 5?
-      5+ - no plans for development- please just go play against professional chess engines for pete's sake
-   */
-    return level3();
+   //planned levels:
+      //0 - level baby, random chaos it'll be great >:D
+      //1 - random move picker 
+      //2 - evaluate based on best possible pos score, depth 1
+      //3 - depth 3
+      //4 - depth 5?
+      //5+ - no plans for development- please just go play against professional chess engines for pete's sake
+    //return level3();
   }
   
   // baby
@@ -325,5 +324,5 @@ class ComputerPlayer extends Player {
   
 
   
-
+*/
 }

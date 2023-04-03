@@ -62,7 +62,7 @@ class Board {
 
   public static void drawTurnBar(boolean whiteTurn, Graphics2D g2){
     
-    Rectangle Square = new Rectangle(0,380,384,12);
+    Rectangle Square = new Rectangle(0,384,383,12);
     
     if(whiteTurn)
       g2.setPaint(Color.WHITE);
@@ -71,9 +71,6 @@ class Board {
 
     g2.fill(Square);
 
-    
-    g2.setStroke(new BasicStroke(((float)Math.PI)));
-
     if(!whiteTurn)
       g2.setPaint(Color.WHITE);
     else
@@ -81,7 +78,6 @@ class Board {
 
     g2.draw(Square);
 
-    g2.setStroke(new BasicStroke(1));
   } 
 
 
