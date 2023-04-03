@@ -35,7 +35,20 @@ Bee:
     4:00PM - 9:20PM
     Implimented a second window along with the response on selection of an element; still needs reworks, but is in a working state
 
+Wednesday, March 29
+Minh:
+    ????
+    wrote position scoreboards
+
 Thursday, March 30
 Bee:
     8:00AM - 9:00AM
     made promotion window nicer :)
+Minh:
+    ???
+    medium done + tested!!!
+
+Monday, April 3rd
+Minh:
+    error found in endgame validation, oops, will need to fix; level 3 theoretically completed but most likely very buggy 
+  

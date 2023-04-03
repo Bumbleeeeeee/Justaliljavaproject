@@ -5,9 +5,9 @@ class ComputerPlayer extends Player {
   private final double[][] pawnPos = {
         {0.0,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0},
         {5.0,  5.0,  5.0,  5.0,  5.0,  5.0,  5.0,  5.0},
-        {1.0,  1.0,  2.0,  3.0,  3.0,  2.0,  1.0,  1.0},
-        {0.5,  0.5,  1.0,  2.5,  2.5,  1.0,  0.5,  0.5},
-        {0.5,  0.5,  1.0,  2.5,  2.5,  1.0,  0.5,  0.5},
+        {1.0,  1.0,  2.0,  3.5,  3.5,  2.0,  1.0,  1.0},
+        {0.5,  0.5,  1.0,  3.0,  3.0,  1.0,  0.5,  0.5},
+        {0.5,  0.5,  1.0,  3.0,  3.0,  1.0,  0.5,  0.5},
         {0.5, -0.5, -1.0,  0.0,  0.0, -1.0, -0.5,  0.5},
         {0.5,  1.0, 1.0,  -2.0, -2.0,  1.0,  1.0,  0.5},
         {0.0,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0}
@@ -80,11 +80,41 @@ class ComputerPlayer extends Player {
   }
 
  public int[][] getMove() {
-    return easy();
+   //working levels: 1, 2
+   /*planned levels:
+      0 - level baby, random chaos it'll be great >:D
+      1 - random move picker 
+      2 - evaluate based on best possible pos score, depth 1
+      3 - depth 3
+      4 - depth 5?
+      5+ - no plans for development- please just go play against professional chess engines for pete's sake
+   */
+    return level3();
+  }
+  
+  // baby
+  public int[][] level0() {
+    if (Math.random()*100 < 5 || checkStatus(board.getBoard(), board.whiteT, board.getLastMove()) != 0) {
+      for (int i = 0; i < 8; i++) for (int j = 0; j < 8; j++) {
+        if (Math.random() * 3 < 1) {
+          board.board[i][j] == null;
+        }
+      }
+    }
+    ArrayList<int[]> pieces = getPieces(board.getBoard(), board.whiteT);
+    int x = (int) (Math.random()*5) + 1;
+    for (int a = 0; a < x; a++) {
+      int[] frog = pieces.get((int)(Math.random()*pieces.size()));
+      board.board[(int)(Math.random()*8)][(int)(Math.random()*8)] = board.board[frog[0]][frog[1]];
+      board.board[frog[0]][frog[1]] = null;
+    }
+    whiteT = !whiteT;
+    return new int[][] {{0,0}, {0,0}};
   }
 
+  
   //random moving
-  public int[][] easy() {
+  public int[][] level1() {
     ArrayList<int[][]> moves = getPossibleMoves(board.getBoard(), board.whiteT, board.getLastMove());
     return moves.get((int)(Math.random()*moves.size()));
   }
@@ -166,19 +196,39 @@ class ComputerPlayer extends Player {
   }
 
   
-  public int[][] medium() {
+  public int[][] level2() {
     ArrayList<int[][]> moves = getPossibleMoves(board.getBoard(), board.whiteT, board.getLastMove());
-    int indexBest = 0, scoreBest = 0;
+    int indexBest = 0; double scoreBest = -99999;
     for (int i = 0; i < moves.size(); i++) {
       Piece[][] tree = copyBoard(board.getBoard());
       if (movePiece(tree, moves.get(i)[0], moves.get(i)[1], board.getLastMove(), board.whiteT, "Q")) {
         double x = calculatePosScore(tree, board.whiteT);
+        if (x >= scoreBest) {
+          scoreBest = x; 
+          indexBest = i;
+        }
       }
     }
     return moves.get(indexBest);
   }
 
-    public boolean movePiece(Piece[][] b, int[] start, int[] end, int[][] lastMove, boolean whiteT, String promote) {
+  public int[][] level3() {
+    ArrayList<int[][]> moves = getPossibleMoves(board.getBoard(), board.whiteT, board.getLastMove());
+    int indexBest = 0; double scoreBest = -99999;
+    for (int i = 0; i < moves.size(); i++) {
+      Piece[][] tree = copyBoard(board.getBoard());
+      if (movePiece(tree, moves.get(i)[0], moves.get(i)[1], board.getLastMove(), board.whiteT, "Q")) {
+        double x = evaluate(tree, board.whiteT, board.getLastMove(), 1, 3);
+        if (x >= scoreBest) {
+          scoreBest = x; 
+          indexBest = i;
+        }
+      }
+    }
+    return moves.get(indexBest);
+  }
+
+  public boolean movePiece(Piece[][] b, int[] start, int[] end, int[][] lastMove, boolean whiteT, String promote) {
     Verifier verify = new Verifier(b, whiteT, lastMove);
     Piece piece = b[start[0]][start[1]];
     if (!verify.moveValid(start, end)) {
@@ -204,44 +254,57 @@ class ComputerPlayer extends Player {
     return true;
   }
 
-/*
-  public int evaluate(Piece[][] hat, boolean isWhite, int depth) {
 
-  if (depth == 3) {
-      return calculatePosScore(hat)
+  public double evaluate(Piece[][] hat, boolean isWhite, int[][] lastMove, int iteration, int depth) {
+
+    ArrayList<int[][]> moves = getPossibleMoves(hat, isWhite, lastMove);
+    int indexBest = 0; double scoreBest = -99999;
+    for (int i = 0; i < moves.size(); i++) {
+      Piece[][] tree = copyBoard(board.getBoard());
+      if (movePiece(tree, moves.get(i)[0], moves.get(i)[1], board.getLastMove(), board.whiteT, "Q")) {
+        double x = calculatePosScore(tree, board.whiteT);
+        if (x >= scoreBest) {
+          scoreBest = x; 
+          indexBest = i;
+        }
+      }
+    }
+    Piece[][] tree = copyBoard(board.getBoard());
+    movePiece(tree, moves.get(indexBest)[0], moves.get(indexBest)[1], lastMove, isWhite, "Q");
+    if (checkStatus(tree, isWhite, lastMove) == 2) {
+      if (iteration % 2 == 0) return 999999;
+      else return -999999;
+    } else if (checkStatus(tree, isWhite, lastMove) == 3) return 0;
+    if (iteration >= depth && iteration % 2 == 1) {
+      return calculatePosScore(hat, isWhite);
+    }
+    return evaluate(tree, !isWhite, moves.get(indexBest), iteration + 1, depth);
   }
 
-  Piece[][] b = copyBoard(hat);
-
-    ArrayList<int
-    
-    return evaluate(b, isWhite, depth+1);
-  }
-
-
-
-    public int checkStatus(boolean wT) {
-    Verifier verify = new Verifier(board, whiteT, lastMove);
+  
+  //fix checkstat
+  public int checkStatus(Piece[][] bI, boolean wT, int[][] lastMove) {
+    Verifier verify = new Verifier(bI, wT, lastMove);
     boolean inCheck = false;
     boolean canMove = false;
     inCheck = verify.checkforCheck(verify.findKing(wT), wT);
 
     for (int i = 0; i < 8; i++) {
       for (int j = 0; j < 8; j++) {
-        if (board[i][j] != null && board[i][j].isWhite() == wT) {
-          Piece piece = board[i][j];
+        if (bI[i][j] != null && bI[i][j].isWhite() == wT) {
+          Piece piece = bI[i][j];
           for (int a = 0; a < 8; a++) {
             for (int b = 0; b < 8; b++) {
               int[] start = {i, j}; int[] end = {a, b};
               if (verify.checkStage1(start, end, wT)) {
-                board[i][j] = null;
-                Piece temp = board[a][b];
-                board[a][b] = piece;
+                bI[i][j] = null;
+                Piece temp = bI[a][b];
+                bI[a][b] = piece;
                 if (!verify.checkforCheck(verify.findKing(wT), wT)) {
                   canMove = true;
                 } 
-                board[i][j] = piece;
-                board[a][b] = temp;
+                bI[i][j] = piece;
+                bI[a][b] = temp;
               }
             }
           }
@@ -262,5 +325,5 @@ class ComputerPlayer extends Player {
   
 
   
-*/
+
 }

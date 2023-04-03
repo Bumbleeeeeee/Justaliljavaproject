@@ -2,6 +2,8 @@ import java.util.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
+import javax.swing.JLayeredPane;
+
 import java.io.*;
 
 import java.awt.Color;
@@ -54,7 +56,33 @@ class Board {
       flag = !flag;
       curY += gRun.tileSize; curX = 0;
     }
+
+    drawTurnBar(holder.board.whiteT, g2);
   }
+
+  public static void drawTurnBar(boolean whiteTurn, Graphics2D g2){
+    
+    Rectangle Square = new Rectangle(0,380,384,12);
+    
+    if(whiteTurn)
+      g2.setPaint(Color.WHITE);
+    else
+      g2.setPaint(Color.BLACK);
+
+    g2.fill(Square);
+
+    
+    g2.setStroke(new BasicStroke(((float)Math.PI)));
+
+    if(!whiteTurn)
+      g2.setPaint(Color.WHITE);
+    else
+      g2.setPaint(Color.BLACK);
+
+    g2.draw(Square);
+
+    g2.setStroke(new BasicStroke(1));
+  } 
 
 
   public Piece[][] getBoard(){
@@ -108,11 +136,14 @@ class Board {
     
     if (piece.getType() == "P" && ((end[0] == 0 && piece.isWhite() == true) || (end[0] == 7 && piece.isWhite() == false))) {
       System.out.println("What would you like to promote your pawn to? (enter Q for queen, N for knight, or R for rook)");
+      JLayeredPane jp = new JLayeredPane();
       SubWindow tempWin = new SubWindow(piece, end[0], end[1], holder.window);
-      tempWin.constructSubWindow();
     }
     
     whiteT = !whiteT;
+
+    
+    
     board[end[0]][end[1]].madeAMove();
     lastMove[0] = start; lastMove[1] = end;
     return true;

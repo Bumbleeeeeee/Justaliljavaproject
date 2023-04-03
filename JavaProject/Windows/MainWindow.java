@@ -1,6 +1,7 @@
 import java.awt.BorderLayout;
 
 import javax.swing.JFrame;
+import javax.swing.JLayeredPane;
 
 public class MainWindow extends JFrame{
   
@@ -12,8 +13,9 @@ public class MainWindow extends JFrame{
     GameRunner gRun = holder.gRun;
     this.add(gRun,BorderLayout.CENTER);
 
-    this.pack();
+    this.setSize(384,450);
 
+    this.setResizable(true);
     this.setVisible(true);  
     this.setLocationRelativeTo(null);
 

@@ -10,11 +10,19 @@ import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class SubWindow extends JPanel{
+
+//this class is intended to extend the JPanel class however in its current state, the buttons will not work as a JPanel class so it will be kept as a JFrame until i get around to fixing it. :sob:
+
+//ive added comments to easily switch between JFrame and JPanel
+public class SubWindow extends JFrame{
 
   static boolean subWindowExists = false;
 
-
+  JButton optionA;
+  JButton optionB;
+  JButton optionC;
+  JButton optionD;
+  
   Piece piece;
   int locationX;
   int locationY;
@@ -28,14 +36,12 @@ public class SubWindow extends JPanel{
     this.locationX = locationX;
 
     this.window = window;
-  }
-  
-  
-  public void constructSubWindow(){
     
     subWindowExists = true;
     System.out.println("yipeeeeeeeeeeeeee");
-    window.add(this,BorderLayout.SOUTH);
+    
+    //add if jpanel
+    //window.add(this,BorderLayout.NORTH);
 
     this.setLocation(0,0);
     
@@ -43,22 +49,25 @@ public class SubWindow extends JPanel{
     
     this.setLayout(null);
     
-    JButton optionA = new JButton(getQueenSprite());
-    JButton optionB = new JButton(getBishopSprite());
-    JButton optionC = new JButton(getKnightSprite());
-    JButton optionD = new JButton(getRookSprite());
+    //delete if JPanel
+    this.setUndecorated(true);
+    
+    optionA = new JButton(getQueenSprite());
+    optionB = new JButton(getBishopSprite());
+    optionC = new JButton(getKnightSprite());
+    optionD = new JButton(getRookSprite());
 
-    optionA.setFocusable(false); optionB.setFocusable(false); optionC.setFocusable(false); optionD.setFocusable(false);
+    //optionA.setFocusable(false); optionB.setFocusable(false); optionC.setFocusable(false); optionD.setFocusable(false);
     
     optionA.setBounds(0,0,96,105); optionB.setBounds(96,0,96,105); optionC.setBounds(192,0,96,105); optionD.setBounds(288,0,96,105);
 
     optionA.setFocusPainted(false); optionB.setFocusPainted(false); optionC.setFocusPainted(false); optionD.setFocusPainted(false);
     
     
-  //if(piece.w){
-//optionA.setBackground(Color.black); optionB.setBackground(Color.black); optionC.setBackground(Color.black); optionD.setBackground(Color.black);}
-    //else{
-    //optionA.setBackground(Color.white); optionB.setBackground(Color.white); optionC.setBackground(Color.white); optionD.setBackground(Color.white);}
+  if(piece.w){
+optionA.setBackground(Color.black); optionB.setBackground(Color.black); optionC.setBackground(Color.black); optionD.setBackground(Color.black);}
+    else{
+    optionA.setBackground(Color.white); optionB.setBackground(Color.white); optionC.setBackground(Color.white); optionD.setBackground(Color.white);}
       
     
     this.add(optionA);
@@ -66,18 +75,11 @@ public class SubWindow extends JPanel{
     this.add(optionC);
     this.add(optionD);
 
-    this.setVisible(true);
+    
+    //add if Jpanel
+    //JLayeredPane.putLayer(this, 5);
 
-    /*ActionHandler handlerA = new ActionHandler();
-    
-    handlerA.optionA = optionA;
-    handlerA.optionB = optionB;
-    handlerA.optionC = optionC;
-    handlerA.optionD = optionD;*/
-    
-    
-    
-    
+    this.setVisible(true);
     
     optionA.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e){
@@ -142,64 +144,7 @@ public class SubWindow extends JPanel{
         SwingUtilities.getWindowAncestor(comp).dispose();
       }
     });
-
   }
-  
-  /*private class ActionHandler implements ActionListener{
-    
-  JButton optionA;
-  JButton optionB;
-  JButton optionC;
-  JButton optionD;
-
-  public ActionHandler(){
-    System.out.println("aHandler made");
-  }
-    
-    public void actionPerformed(ActionEvent event){
-      System.out.println("button was pushed!!!!!");
-
-      if(event.getSource() == optionA){
-        System.out.println("IT WAS A :O");
-        Board.board[locationY][locationX] = null;
-        Board.board[locationY][locationX] = new Piece("Q", piece.isWhite());
-      }
-      
-      if(event.getSource() == optionB){
-        System.out.println("IT WAS B :O");
-        Board.board[locationY][locationX] = null;
-        Board.board[locationY][locationX] = new Piece("B", piece.isWhite());
-        //JComponent comp = (JComponent) event.getSource();
-        //System.out.println("disposed");
-        //SwingUtilities.getWindowAncestor(comp).dispose();
-      }
-          
-      if(event.getSource() == optionC){
-        System.out.println("IT WAS C :O");
-        Board.board[locationY][locationX] = null;
-        Board.board[locationY][locationX] = new Piece("N", piece.isWhite());
-        //JComponent comp = (JComponent) event.getSource();
-        //System.out.println("disposed");
-        //SwingUtilities.getWindowAncestor(comp).dispose();
-      }
-      
-      if(event.getSource() == optionD){
-        System.out.println("IT WAS D :O");
-        Board.board[locationY][locationX] = null;
-        Board.board[locationY][locationX] = new Piece("R", piece.isWhite());
-        //JComponent comp = (JComponent) event.getSource();
-        //System.out.println("disposed");
-        //SwingUtilities.getWindowAncestor(comp).dispose();
-      }
-
-      subWindowExists = false;
-
-      JComponent comp = (JComponent) event.getSource();
-        System.out.println("disposed");
-        SwingUtilities.getWindowAncestor(comp).dispose();
-      
-    }
-  }*/
 
   public ImageIcon getQueenSprite(){
     BufferedImage image = null; 
