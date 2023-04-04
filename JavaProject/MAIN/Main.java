@@ -12,6 +12,7 @@ class Main {
     window.add(welcome);
     
     GameRunner gRun = holder.gRun;
+    
     gRun.start();
     }
   }

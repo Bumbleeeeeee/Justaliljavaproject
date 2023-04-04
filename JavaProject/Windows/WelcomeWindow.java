@@ -12,8 +12,11 @@ public class WelcomeWindow extends JPanel{
 
   public WelcomeWindow(){
 
-    this.setBounds(192,192,60,30);
+    this.setBounds(0,0,60,30);
 
     this.setBackground(Color.BLUE);
+
+    button1A = new JButton("test UnU");
+    button2A = new JButton("test2 UvU");
   }
 }
