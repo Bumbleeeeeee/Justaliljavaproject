@@ -2,6 +2,7 @@ import javax.swing.JPanel;
 import java.awt.*;
 import java.lang.Runnable;
 
+//This is essentially the object that is the panel on which the board is in, it makes up the window and manages updates
 public class GameRunner extends JPanel implements Runnable{
 
   public static final int tileSize = 48;
@@ -17,12 +18,12 @@ public class GameRunner extends JPanel implements Runnable{
 
   public GameRunner(){
 
-    this.setPreferredSize(new Dimension(screenWidth,screenHeight + 12));
+    this.setPreferredSize(new Dimension(screenWidth,screenHeight + 13));
     this.setBackground(Color.black);
     this.setDoubleBuffered(true); 
 
     PieceManager.instantiatePieces();
-    
+    //addMouseListener(holder.cListen);
   }
 
 

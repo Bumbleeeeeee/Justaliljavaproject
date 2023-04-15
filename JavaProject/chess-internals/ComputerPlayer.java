@@ -88,7 +88,7 @@ class ComputerPlayer extends Player {
       //3 - depth 3
       //4 - depth 5?
       //5+ - no plans for development- please just go play against professional chess engines for pete's sake
-    return level2();
+    return level3();
   }
   
   // baby
@@ -229,7 +229,7 @@ class ComputerPlayer extends Player {
   }
 
   public double evaluate(Piece[][] hat, boolean isWhite, int[][] lastMove, int iteration, int depth) {
-
+    System.out.println(calculatePosScore(hat, isWhite));
     ArrayList<int[][]> moves = getPossibleMoves(hat, isWhite, lastMove);
     int indexBest = 0; double scoreBest = -99999;
     for (int i = 0; i < moves.size(); i++) {
@@ -246,7 +246,7 @@ class ComputerPlayer extends Player {
 
     Piece[][] tree = copyBoard(board.getBoard());
     movePiece(tree, moves.get(indexBest)[0], moves.get(indexBest)[1], lastMove, isWhite, "Q");
-    if (checkStatus(tree, isWhite, lastMove) == 2) {
+    if (checkStatus(tree, !isWhite, lastMove) == 2) {
       if (iteration % 2 == 1) return 999999;
       else return -999999;
     } else if (checkStatus(tree, isWhite, lastMove) == 3) return 0;

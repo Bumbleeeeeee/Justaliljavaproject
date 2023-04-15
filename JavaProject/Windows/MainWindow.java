@@ -3,6 +3,7 @@ import java.awt.Dimension;
 
 import javax.swing.JFrame;
 
+//JFrame object, will mostly be called for the pack() method, it mostly 
 public class MainWindow extends JFrame{
   
   public MainWindow(){
@@ -10,17 +11,12 @@ public class MainWindow extends JFrame{
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.setResizable(false);
 
-    GameRunner gRun = holder.gRun;
-
-    //this.setLocationRelativeTo(null);
-    //16,47
-    this.pack();
-    System.out.println(this.getHeight() + ", " + this.getWidth());
-
-    holder.gRun.addMouseListener(holder.cListen);
-
     holder.window = this;
 
     this.setVisible(true);  
+    
+    this.add(holder.gRun, 0); //,JLayeredPane.DEFAULT_LAYER
+
+    this.pack();
     }
   }
