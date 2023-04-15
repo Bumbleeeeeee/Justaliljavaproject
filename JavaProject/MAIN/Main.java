@@ -8,10 +8,11 @@ class Main {
     
     MainWindow window = new MainWindow();
 
-    WelcomeWindow welcome = new WelcomeWindow();
-    window.add(welcome);
+    //WelcomeWindow welcome = new WelcomeWindow();
+    //window.add(welcome);
     
     GameRunner gRun = holder.gRun;
+    window.add(gRun);
     
     gRun.start();
     }

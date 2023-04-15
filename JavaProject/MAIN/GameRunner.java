@@ -1,29 +1,27 @@
 import javax.swing.JPanel;
 import java.awt.*;
 import java.lang.Runnable;
-import javax.swing.JLayeredPane;
 
 public class GameRunner extends JPanel implements Runnable{
 
-  public final int tileSize = 48;
+  public static final int tileSize = 48;
   public final double FPS = 2.5;
-  public final int screenRows = 8;
-  public final int screenColumns = 8;
+  public static final int screenRows = 8;
+  public static final int screenColumns = 8;
 
-  public final int screenWidth = tileSize * screenColumns;
-  public final int screenHeight = tileSize * screenRows;
+  public static final int screenWidth = tileSize * screenColumns;
+  public static final int screenHeight = tileSize * screenRows;
 
   Thread gameThread;
   
 
   public GameRunner(){
 
-    this.setPreferredSize(new Dimension(screenWidth,screenHeight));
+    this.setPreferredSize(new Dimension(screenWidth,screenHeight + 12));
     this.setBackground(Color.black);
     this.setDoubleBuffered(true); 
 
     PieceManager.instantiatePieces();
-    JLayeredPane.putLayer(this, 1);
     
   }
 

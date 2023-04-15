@@ -11,13 +11,9 @@ public class MainWindow extends JFrame{
     this.setResizable(false);
 
     GameRunner gRun = holder.gRun;
-    this.add(gRun,BorderLayout.CENTER);
-
-    this.setResizable(false);
 
     //this.setLocationRelativeTo(null);
     //16,47
-    this.setPreferredSize(new Dimension(gRun.screenWidth, gRun.screenHeight + 12));
     this.pack();
     System.out.println(this.getHeight() + ", " + this.getWidth());
 

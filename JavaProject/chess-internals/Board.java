@@ -160,14 +160,27 @@ class Board {
               int[] start = {i, j}; int[] end = {a, b};
               //System.out.println("i: " + i + " j: " + j + " a: " + a + " b: " + b);
               if (verify.checkStage1(start, end, wT)) {
-                board[i][j] = null;
-                Piece temp = board[a][b];
-                board[a][b] = piece;
+                board[start[0]][start[1]] = null;
+                Piece temp = board[end[0]][end[1]];
+                board[end[0]][end[1]] = piece;
+                if (verify.castling) {
+                  if (end[1] == 2) {board[end[0]][3] = board[end[0]][0]; board[end[0]][0] = null;}
+                  else if (end[1] == 6) {board[end[0]][5] = board[end[0]][7]; board[end[0]][7] = null;}}
+                if (verify.enpassant) {
+                  board[start[0]][end[1]] = null;
+                }
                 if (!verify.checkforCheck(verify.findKing(wT), wT)) {
                   canMove = true;
                 } 
-                board[i][j] = piece;
-                board[a][b] = temp;
+                board[start[0]][start[1]] = piece;
+                board[end[0]][end[1]] = temp;
+                if (verify.castling) {
+                  if (end[1] == 2) {board[end[0]][0] = board[end[0]][3]; board[end[0]][3] = null;}
+                  else if (end[1] == 6) {board[end[0]][7] = board[end[0]][5]; board[end[0]][5] = null;}
+    }
+                if (verify.enpassant) {
+      board[start[0]][end[1]] = new Piece("P", !whiteT);
+    }
               }
             }
           }

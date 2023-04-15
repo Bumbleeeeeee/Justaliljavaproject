@@ -21,6 +21,7 @@ public class ChessRunner{
         gameActive = false;
 
       } else {
+        board.printBoard();
         Player player;
         if(status == 1) System.out.println(" Check! ");
         if (board.isWhiteTurn()) player = new Player();
