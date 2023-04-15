@@ -1,6 +1,3 @@
-import javax.swing.JLayeredPane;
-import java.awt.*;
-
 class Main {
   public static void main(String[] args) {
   
@@ -11,7 +8,7 @@ class Main {
     MainWindow window = new MainWindow();
 
     WelcomeWindow welcome = new WelcomeWindow();
-    window.add(welcome,1);
+    window.add(welcome,0);
 
     //holder.gRun.start();
     }

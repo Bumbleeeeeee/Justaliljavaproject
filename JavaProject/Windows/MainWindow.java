@@ -1,5 +1,4 @@
-import java.awt.BorderLayout;
-import java.awt.Dimension;
+
 
 import javax.swing.JFrame;
 
@@ -8,7 +7,7 @@ public class MainWindow extends JFrame{
   
   public MainWindow(){
     
-    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     this.setResizable(false);
 
     holder.window = this;
