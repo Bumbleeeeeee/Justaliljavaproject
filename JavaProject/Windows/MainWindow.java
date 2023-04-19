@@ -11,11 +11,8 @@ public class MainWindow extends JFrame{
     this.setResizable(false);
 
     holder.window = this;
+    
 
     this.setVisible(true);  
-    
-    this.add(holder.gRun, 0); //,JLayeredPane.DEFAULT_LAYER
-
-    this.pack();
     }
   }

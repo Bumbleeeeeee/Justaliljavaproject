@@ -12,7 +12,7 @@ import java.awt.event.ActionEvent;
 //this class is intended to extend the JPanel class however in its current state, the buttons will not work as a JPanel class so it will be kept as a JFrame until i get around to fixing it. :sob:
 
 //ive added comments to easily switch between JFrame and JPanel
-public class SubWindow extends JFrame{
+public class SubWindow extends JPanel{
 
   static boolean subWindowExists = false;
 
@@ -39,7 +39,7 @@ public class SubWindow extends JFrame{
     System.out.println("yipeeeeeeeeeeeeee");
     
     //add if jpanel
-    //window.add(this,BorderLayout.NORTH);
+    holder.gRun.add(this,0);
 
     this.setLocation(0,0);
     
@@ -48,14 +48,15 @@ public class SubWindow extends JFrame{
     this.setLayout(null);
     
     //delete if JPanel
-    this.setUndecorated(true);
+    //this.setUndecorated(true);
     
     optionA = new JButton(getQueenSprite());
     optionB = new JButton(getBishopSprite());
     optionC = new JButton(getKnightSprite());
     optionD = new JButton(getRookSprite());
 
-    //optionA.setFocusable(false); optionB.setFocusable(false); optionC.setFocusable(false); optionD.setFocusable(false);
+  
+    optionA.setFocusable(false); optionB.setFocusable(false); optionC.setFocusable(false); optionD.setFocusable(false);
     
     optionA.setBounds(0,0,96,105); optionB.setBounds(96,0,96,105); optionC.setBounds(192,0,96,105); optionD.setBounds(288,0,96,105);
 
@@ -75,73 +76,38 @@ optionA.setBackground(Color.black); optionB.setBackground(Color.black); optionC.
 
     
     //add if Jpanel
-    //JLayeredPane.putLayer(this, 5);
+    JLayeredPane.putLayer(this, 5);
 
     this.setVisible(true);
     
-    optionA.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e){
-        
-        System.out.println("IT WAS A :O");
-        
-        Board.board[locationY][locationX] = null;
-        Board.board[locationY][locationX] = new Piece("Q", piece.isWhite());
+    optionA.addActionListener(new ActionHandler("Q", this));
+    optionB.addActionListener(new ActionHandler("B", this));
+    optionC.addActionListener(new ActionHandler("N", this));
+    optionD.addActionListener(new ActionHandler("R", this));
+  }
 
+  private class ActionHandler implements ActionListener{
+
+  static JPanel subwindow;
+  String id;
+    
+    public ActionHandler(String id, SubWindow subwindow){
+      this.id = id; this.subwindow = subwindow;
+    }
+    
+    public void actionPerformed(ActionEvent event){
+      System.out.println("button was pushed!!!!!");
+
+      JButton button = (JButton)event.getSource();
+
+        Board.board[locationY][locationX] = null;  
+        
+        Board.board[locationY][locationX] = new Piece(id, piece.isWhite());
+
+      
         subWindowExists = false;
-
-        JComponent comp = (JComponent) e.getSource();
-        System.out.println("disposed");
-        SwingUtilities.getWindowAncestor(comp).dispose();
-      }
-    });
-
-    optionB.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e){
-        
-        System.out.println("IT WAS B :O");
-        
-        Board.board[locationY][locationX] = null;
-        Board.board[locationY][locationX] = new Piece("B", piece.isWhite());
-
-        subWindowExists = false;
-
-        JComponent comp = (JComponent) e.getSource();
-        System.out.println("disposed");
-        SwingUtilities.getWindowAncestor(comp).dispose();
-      }
-    });
-
-    optionC.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e){
-        
-        System.out.println("IT WAS C :O");
-        
-        Board.board[locationY][locationX] = null;
-        Board.board[locationY][locationX] = new Piece("N", piece.isWhite());
-
-        subWindowExists = false;
-
-        JComponent comp = (JComponent) e.getSource();
-        System.out.println("disposed");
-        SwingUtilities.getWindowAncestor(comp).dispose();
-      }
-    });
-
-    optionD.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e){
-        
-        System.out.println("IT WAS D :O");
-        
-        Board.board[locationY][locationX] = null;
-        Board.board[locationY][locationX] = new Piece("R", piece.isWhite());
-
-        subWindowExists = false;
-
-        JComponent comp = (JComponent) e.getSource();
-        System.out.println("disposed");
-        SwingUtilities.getWindowAncestor(comp).dispose();
-      }
-    });
+        subwindow.setVisible(false);
+    }
   }
 
   public ImageIcon getQueenSprite(){

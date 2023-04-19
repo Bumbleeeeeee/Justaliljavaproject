@@ -49,7 +49,7 @@ class ComputerPlayer extends Player {
         {-2.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -2.0}
       };
   private final double bishopValue = 35;
-
+//haiiiii!
   private final double[][] queenPos = {
         {-2.0, -1.0, -1.0, -0.5, -0.5, -1.0, -1.0, -2.0},
         {-1.0,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0, -1.0},
@@ -74,28 +74,40 @@ class ComputerPlayer extends Player {
   private final double kingValue = 1000;
   
   private Board board;
+  private boolean wP;
 
-  public ComputerPlayer(Board hat) {
+  public ComputerPlayer(Board hat, boolean wP) {
     board = hat;
+    this.wP = wP;
   }
 
- public int[][] getMove() {
-   //working levels: 1, 2
+ public void getMove(int x) {
+   //working levels: 0, 1, 2
    //planned levels:
       //0 - level baby, random chaos it'll be great >:D
       //1 - random move picker 
       //2 - evaluate based on best possible pos score, depth 1
+   
       //3 - depth 3
       //4 - depth 5?
       //5+ - no plans for development- please just go play against professional chess engines for pete's sake
-    return level3();
+     if (wP == board.whiteT) {
+        System.out.println("computer's turn");
+        int[][] hat;
+        if (x == 0) hat = level0();
+        else if (x == 1) hat = level1();
+        else if (x == 2) hat = level2();
+        else hat = level3();
+        board.movePiece(hat[0], hat[1]);
+     }
   }
   
   // baby
   public int[][] level0() {
+    Verifier verify = new Verifier(board.board, board.whiteT, board.lastMove);
     if (Math.random()*100 < 5 || checkStatus(board.getBoard(), board.whiteT, board.getLastMove()) != 0) {
       for (int i = 0; i < 8; i++) for (int j = 0; j < 8; j++) {
-        if (Math.random() * 3 < 1) {
+        if (Math.random() * 3 < 1 || (board.board[i][j] != null && board.board[i][j].isWhite() != board.whiteT && verify.moveValid(new int[] {i, j}, verify.findKing(board.whiteT)))) {
           board.board[i][j] = null;
         }
       }
@@ -217,7 +229,7 @@ class ComputerPlayer extends Player {
     for (int i = 0; i < moves.size(); i++) {
       Piece[][] tree = copyBoard(board.getBoard());
       if (movePiece(tree, moves.get(i)[0], moves.get(i)[1], board.getLastMove(), board.whiteT, "Q")) {
-        double x = evaluate(tree, board.whiteT, board.getLastMove(), 1, 3);
+        double x = evaluate(tree, board.whiteT, board.getLastMove(), 1, 4);
         
         if (x >= scoreBest) {
           scoreBest = x; 
@@ -229,14 +241,12 @@ class ComputerPlayer extends Player {
   }
 
   public double evaluate(Piece[][] hat, boolean isWhite, int[][] lastMove, int iteration, int depth) {
-    System.out.println(calculatePosScore(hat, isWhite));
-    ArrayList<int[][]> moves = getPossibleMoves(hat, isWhite, lastMove);
+    ArrayList<int[][]> moves = getPossibleMoves(hat, !isWhite, lastMove);
     int indexBest = 0; double scoreBest = -99999;
     for (int i = 0; i < moves.size(); i++) {
-      Piece[][] tree = copyBoard(board.getBoard());
-      if (movePiece(tree, moves.get(i)[0], moves.get(i)[1], board.getLastMove(), isWhite, "Q")) {
-        double x = calculatePosScore(tree, isWhite);
-        
+      Piece[][] tree = copyBoard(hat);
+      if (movePiece(tree, moves.get(i)[0], moves.get(i)[1], lastMove, !isWhite, "Q")) {
+        double x = calculatePosScore(tree, !isWhite);
         if (x >= scoreBest) {
           scoreBest = x; 
           indexBest = i;
@@ -244,12 +254,12 @@ class ComputerPlayer extends Player {
       }
     }
 
-    Piece[][] tree = copyBoard(board.getBoard());
-    movePiece(tree, moves.get(indexBest)[0], moves.get(indexBest)[1], lastMove, isWhite, "Q");
+    Piece[][] tree = copyBoard(hat);
+    movePiece(tree, moves.get(indexBest)[0], moves.get(indexBest)[1], lastMove, !isWhite, "Q");
     if (checkStatus(tree, !isWhite, lastMove) == 2) {
       if (iteration % 2 == 1) return 999999;
       else return -999999;
-    } else if (checkStatus(tree, isWhite, lastMove) == 3) return 0;
+    } else if (checkStatus(tree, !isWhite, lastMove) == 3) return 0;
     if (iteration >= depth && iteration % 2 == 0) {
       System.out.println(calculatePosScore(hat, isWhite));
       return calculatePosScore(hat, isWhite);

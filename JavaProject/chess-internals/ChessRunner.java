@@ -1,4 +1,8 @@
+import java.util.Scanner;
+
 public class ChessRunner{
+
+  public static boolean gameActive = false;
 
   //status 1 = check
   //status 2 = win state
@@ -7,8 +11,14 @@ public class ChessRunner{
 
   //all S.O.PLs are temp placeholders for an output!
   public static void run(){
+    System.out.println("welcome");
     Board board = holder.board;
-    boolean gameActive = true;
+    System.out.println("??");
+    int level = 0;
+    gameActive = true;
+    Scanner scan = new Scanner(System.in);
+    level = scan.nextInt();
+    ComputerPlayer computerPlayer = new ComputerPlayer(board, false);
     while (gameActive) {
       int status = board.checkStatus(board.isWhiteTurn());
       if (status == 2) {
@@ -21,15 +31,8 @@ public class ChessRunner{
         gameActive = false;
 
       } else {
-        board.printBoard();
-        Player player;
-        if(status == 1) System.out.println(" Check! ");
-        if (board.isWhiteTurn()) player = new Player();
-        else player = new ComputerPlayer(board);
-        int[][] move = player.getMove();
-        board.movePiece(move[0], move[1]);
+        computerPlayer.getMove(level);
       }
-      System.out.println();
     }
   }
 }

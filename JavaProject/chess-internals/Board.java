@@ -26,6 +26,7 @@ class Board {
     int curX = 0;
     int curY = 0;
     
+    if(!SubWindow.subWindowExists){
     for(int currentRow = 0; currentRow < gRun.screenRows; currentRow++){
       for(int currentCollumn = 0; currentCollumn < gRun.screenColumns; currentCollumn++){
 
@@ -58,6 +59,7 @@ class Board {
     }
 
     drawTurnBar(holder.board.whiteT, g2);
+    }
   }
 
   public static void drawTurnBar(boolean whiteTurn, Graphics2D g2){
@@ -133,6 +135,8 @@ class Board {
     if (piece.getType() == "P" && ((end[0] == 0 && piece.isWhite() == true) || (end[0] == 7 && piece.isWhite() == false))) {
       System.out.println("What would you like to promote your pawn to? (enter Q for queen, N for knight, or R for rook)");
       JLayeredPane jp = new JLayeredPane();
+      
+      SubWindow.subWindowExists = true;
       SubWindow tempWin = new SubWindow(piece, end[0], end[1], holder.window);
     }
     

@@ -1,5 +1,3 @@
-//pretty sure this is depricated
-
 import java.util.Scanner;
 class Player {
 

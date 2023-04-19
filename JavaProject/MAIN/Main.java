@@ -1,15 +1,42 @@
+import javax.swing.JLayeredPane;
+import java.awt.Color;
+import javax.swing.*;
+import java.awt.Component;
+
+//to be removed
+import javax.swing.JButton;
+
 class Main {
   public static void main(String[] args) {
   
     holder.board = new Board();
     holder.cListen = new ClickListener();
-    holder.gRun = new GameRunner();
+    
     
     MainWindow window = new MainWindow();
+    WindowPane pane = new WindowPane();
 
+    holder.gRun = new GameRunner();
+    pane.add(holder.gRun, JLayeredPane.DEFAULT_LAYER);
+    
+    
     WelcomeWindow welcome = new WelcomeWindow();
-    window.add(welcome,0);
+    pane.add(welcome,JLayeredPane.POPUP_LAYER);
 
-    //holder.gRun.start();
+    window.setContentPane(pane);
+    window.setVisible(true);
+    window.pack();
+    
+    System.out.println("\nComponents in window:\n");
+    
+    Component[] comps = window.getContentPane().getComponents();
+    for(int i = 0; i < comps.length; i++)  System.out.println(comps[i] + "\n");
+
+    System.out.println("\nComponents in window's pane:\n");
+    
+    Component[] comps2 = pane.getComponents();
+    for(int i = 0; i < comps2.length; i++)  System.out.println(comps2[i] + "\n");
+
+    holder.gRun.start();
     }
   }

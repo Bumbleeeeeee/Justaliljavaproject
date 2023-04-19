@@ -19,21 +19,18 @@ public class GameRunner extends JPanel implements Runnable{
 
   public GameRunner(){
 
-    this.setPreferredSize(new Dimension(screenWidth,screenHeight + 13));
+    this.setBounds(0,0,screenWidth,screenHeight+13);
     this.setBackground(Color.black);
     this.setDoubleBuffered(true); 
 
     PieceManager.instantiatePieces();
-    //addMouseListener(holder.cListen);
+    addMouseListener(holder.cListen);
   }
 
 
   public void startGameThread(){
     gameThread = new Thread(this);
     gameThread.start();
-
-    
-
   }
 
   @Override
@@ -60,9 +57,9 @@ public class GameRunner extends JPanel implements Runnable{
   }
   
   public void start(){
-
-    startGameThread();
+    System.out.println("Started");
     
+    startGameThread();
     ChessRunner.run();
     
     repaint();

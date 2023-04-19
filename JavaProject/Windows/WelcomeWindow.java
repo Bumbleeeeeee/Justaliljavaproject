@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Window;
 import java.awt.event.*;
 import java.awt.Component;
+import javax.swing.JLayeredPane;
 
 public class WelcomeWindow extends JPanel{
 
@@ -18,7 +19,7 @@ public class WelcomeWindow extends JPanel{
   public WelcomeWindow(){
 
     this.setLayout(null);
-    this.setPreferredSize(new Dimension(200,200));
+    this.setBounds(0,0,200,200);
     this.setBackground(Color.BLUE);
     this.setDoubleBuffered(true);
 
@@ -45,21 +46,14 @@ public class WelcomeWindow extends JPanel{
 
     public void actionPerformed(ActionEvent e){
       System.out.println("IT WAS A :O");
-
       System.out.println(welcome);
-      MainWindow window = holder.window;
-      JLayeredPane windowOnion = window.getLayeredPane();
+
+      //JLayeredPane pane = (JLayeredPane)((JFrame)SwingUtilities.getWindowAncestor(welcome)).getContentPane()
+      //System.out.println(pane);
       
-      System.out.println(welcome.getParent());
       welcome.setVisible(false);
       
-      //windowOnion.setLayer(welcome, 0);
-      window.remove(welcome);
-      System.out.println(welcome.getParent());
-      
-      System.out.println("disposed:\n" + welcome);
-      
-      holder.gRun.start();
+      //holder.gRun.start();
     }
   }
 }

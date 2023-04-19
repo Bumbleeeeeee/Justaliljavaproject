@@ -9,15 +9,23 @@ public GameRunner gRun = holder.gRun;
 //Register for mouse events on blankArea and the panel.
     public ClickListener(){}
 
+//THIS IS THE WORKING VERSION
   
   //maybe not needed
   public void mousePressed(MouseEvent e) {
+    
+    //locations of the selection as if it were array (not pixel based)
     int Xselect = e.getX() / gRun.tileSize;
     int Yselect = e.getY() / gRun.tileSize;
+
+    //Returns click
     System.out.println("Mouse clicked (# of clicks: " + e.getClickCount() + ")" + "\n\t@ " + (Xselect) + ", " + (Yselect));
     
+    //checks if there is a selection(for the highlighting) managed in PieceManager :)
     if(PieceManager.curSelection == null)
       PieceManager.onClick(Xselect, Yselect);
+
+    //if theres a selection it carries out the move
     else{
       int[] end = new int[]{Yselect,Xselect};
       
