@@ -31,7 +31,7 @@ public class ChessRunner{
         gameActive = false;
 
       } else {
-        computerPlayer.getMove(level);
+        if (board.isWhiteTurn() == false) computerPlayer.getMove(level);
       }
     }
   }
