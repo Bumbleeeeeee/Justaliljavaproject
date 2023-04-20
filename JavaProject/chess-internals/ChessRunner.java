@@ -18,8 +18,11 @@ public class ChessRunner{
     gameActive = true;
     /* 
     ===========commented bc the scan bricks the entire thing D:===============
-    update, its all been commented out, the while statement prevents any other methods from running, we just need to do something else insetead! 
-    Shouldnt be too bad, i can fit it all into the Update method within Gamerunner!*/
+    update, its all been commented out, the while statement prevents any other methods from running, we just need to do something else instead! 
+    Shouldnt be too bad, i can fit it all into the Update method within Gamerunner!
+    
+    This class will probably be deprecated once im done
+    */
     System.out.println("putting this here so youre not confused: a bunch of code has been commented\nchessrunner line20 for info! :D");
     /* 
     Scanner scan = new Scanner(System.in);

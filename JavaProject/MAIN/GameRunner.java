@@ -14,6 +14,11 @@ public class GameRunner extends JPanel implements Runnable{
   public static final int screenHeight = tileSize * screenRows;
 
   Thread gameThread;
+
+  boolean vsComputer = false;
+  ComputerPlayer computer;
+  
+  boolean gameActive = false;
   
 
   public GameRunner(){
@@ -57,9 +62,10 @@ public class GameRunner extends JPanel implements Runnable{
   
   public void start(){
     System.out.println("Started");
-    
+
     startGameThread();
-    ChessRunner.run();
+    gameActive = true;
+    //ChessRunner.run();
   }
 
 
@@ -67,7 +73,24 @@ public class GameRunner extends JPanel implements Runnable{
 
 
   public void update(){
+
+    Board board = holder.board;
     
+    int status = board.checkStatus(board.isWhiteTurn());
+      if (status == 2) {
+        if (board.isWhiteTurn()) System.out.print(" BLACK WINS! ");
+        if (!board.isWhiteTurn()) System.out.print(" WHITE WINS! ");
+        gameActive = false;} 
+        
+        else if (status == 3) {
+        System.out.println(" STALEMATE");
+        gameActive = false;}
+    
+    
+    if(vsComputer && holder.board.whiteT == computer.getIsWhite()){
+      System.out.println("computers turn");
+      computer.getMove();
+    }
   }
   
   public void paintComponent(Graphics g){

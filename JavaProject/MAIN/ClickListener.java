@@ -20,9 +20,8 @@ public GameRunner gRun = holder.gRun;
 
     //Returns click
     System.out.println("Mouse clicked (# of clicks: " + e.getClickCount() + ")" + "\n\t@ " + (Xselect) + ", " + (Yselect));
-    
-    System.out.println(ChessRunner.gameActive);
-    if(ChessRunner.gameActive){
+
+      if(holder.gRun.gameActive){
     //checks if there is a selection(for the highlighting) managed in PieceManager :)
       if(PieceManager.curSelection == null)
         PieceManager.onClick(Xselect, Yselect);

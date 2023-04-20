@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.event.*;
+import java.awt.Component;
 
 public class WelcomeWindow extends JPanel{
   
@@ -30,8 +31,8 @@ public class WelcomeWindow extends JPanel{
 
     this.setDoubleBuffered(true);
     
-    button1A = new JButton("RAWR");
-    button1B = new JButton("AAAAAAAAAAAA");
+    button1A = new JButton("2 Player!");
+    button1B = new JButton("VS Computer!");
 
     button1A.setBounds(48,96,144,96); button1B.setBounds(192,96,144,96);
 
@@ -40,29 +41,30 @@ public class WelcomeWindow extends JPanel{
     this.add(button1A);
     this.add(button1B);
 
-    button1A.addActionListener(new Actioner(this));
+    button1A.addActionListener(new ActionListener() {
+
+      public void actionPerformed(ActionEvent e){
+
+        JButton sourceButton = (JButton) e.getSource();
+        MainWindow win = (MainWindow)SwingUtilities.getWindowAncestor(sourceButton);
+        Component[] comps = win.getComponents();
+        WelcomeWindow welcome = (WelcomeWindow)comps[0];
+        
+        welcome.setVisible(false);
+        holder.gRun.start();
+      }
+    });
     button1B.addActionListener(new ActionListener() {
 
       public void actionPerformed(ActionEvent e){
-        square.repaint();
+        holder.gRun.computer = new ComputerPlayer(holder.board, 2, false);
+        holder.gRun.vsComputer = true;
       }
     });
-  }
 
-  private class Actioner implements ActionListener{
+    private class Actioner{
 
-    JPanel welcome;
-    public Actioner(JPanel welcome){
-      this.welcome = welcome;}
-
-    public void actionPerformed(ActionEvent e){
-      System.out.println("IT WAS A :O");
-      System.out.println(welcome);
-
-      square.clearWelcomeRectangle();
-
-      welcome.setVisible(false);
-      holder.gRun.start();
+      public Actioner(WindowPane pane)
     }
   }
 }

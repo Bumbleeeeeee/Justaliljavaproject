@@ -1,6 +1,6 @@
 import java.util.*;
 
-class ComputerPlayer extends Player {
+class ComputerPlayer{
 
   private final double[][] pawnPos = {
         {0.0,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0},
@@ -75,13 +75,19 @@ class ComputerPlayer extends Player {
   
   private Board board;
   private boolean wP;
+  private int difficulty;
 
-  public ComputerPlayer(Board hat, boolean wP) {
+  public ComputerPlayer(Board hat, int difficulty, boolean wP) {
     board = hat;
+    this.difficulty = difficulty;
     this.wP = wP;
   }
 
- public void getMove(int x) {
+  public boolean getIsWhite(){
+    return wP;
+  }
+
+ public void getMove() {
    //working levels: 0, 1, 2
    //planned levels:
       //0 - level baby, random chaos it'll be great >:D
@@ -91,12 +97,12 @@ class ComputerPlayer extends Player {
       //3 - depth 3
       //4 - depth 5?
       //5+ - no plans for development- please just go play against professional chess engines for pete's sake
-     if (wP == board.whiteT && x != -1) {
+     if (wP == board.whiteT && difficulty != -1) {
         System.out.println("computer's turn");
         int[][] hat;
-        if (x == 0) hat = level0();
-        else if (x == 1) hat = level1();
-        else if (x == 2) hat = level2();
+        if (difficulty == 0) hat = level0();
+        else if (difficulty == 1) hat = level1();
+        else if (difficulty == 2) hat = level2();
         else hat = level3();
         board.movePiece(hat[0], hat[1]);
      }
