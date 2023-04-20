@@ -17,7 +17,7 @@ public class ChessRunner{
     int level = -1; //level has been made -1 for no AI; if you change, make sure to keep the check in getMove so it can be used for later!!
     gameActive = true;
     /* 
-    ===========================commented bc the scan bricks the entire thing D:==========================
+    ===========commented bc the scan bricks the entire thing D:===============
     update, its all been commented out, the while statement prevents any other methods from running, we just need to do something else insetead! 
     Shouldnt be too bad, i can fit it all into the Update method within Gamerunner!*/
     System.out.println("putting this here so youre not confused: a bunch of code has been commented\nchessrunner line20 for info! :D");
