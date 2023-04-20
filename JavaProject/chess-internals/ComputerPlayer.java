@@ -49,7 +49,7 @@ class ComputerPlayer extends Player {
         {-2.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -2.0}
       };
   private final double bishopValue = 35;
-//haiiiii!
+
   private final double[][] queenPos = {
         {-2.0, -1.0, -1.0, -0.5, -0.5, -1.0, -1.0, -2.0},
         {-1.0,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0, -1.0},
@@ -91,7 +91,7 @@ class ComputerPlayer extends Player {
       //3 - depth 3
       //4 - depth 5?
       //5+ - no plans for development- please just go play against professional chess engines for pete's sake
-     if (wP == board.whiteT) {
+     if (wP == board.whiteT && x != -1) {
         System.out.println("computer's turn");
         int[][] hat;
         if (x == 0) hat = level0();

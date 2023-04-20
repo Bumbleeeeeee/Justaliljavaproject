@@ -39,7 +39,7 @@ public class SubWindow extends JPanel{
     System.out.println("yipeeeeeeeeeeeeee");
     
     //add if jpanel
-    holder.gRun.add(this,0);
+    window.getContentPane().add(this,JLayeredPane.POPUP_LAYER);
 
     this.setLocation(0,0);
     
@@ -88,7 +88,7 @@ optionA.setBackground(Color.black); optionB.setBackground(Color.black); optionC.
 
   private class ActionHandler implements ActionListener{
 
-  static JPanel subwindow;
+  JPanel subwindow;
   String id;
     
     public ActionHandler(String id, SubWindow subwindow){

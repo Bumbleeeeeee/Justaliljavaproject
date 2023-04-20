@@ -11,5 +11,5 @@ public class WindowPane extends JLayeredPane{
     this.setBackground(Color.BLACK);
   }
   
-    
+  
   }

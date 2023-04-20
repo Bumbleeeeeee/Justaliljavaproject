@@ -1,10 +1,5 @@
 import javax.swing.JLayeredPane;
-import java.awt.Color;
-import javax.swing.*;
 import java.awt.Component;
-
-//to be removed
-import javax.swing.JButton;
 
 class Main {
   public static void main(String[] args) {
@@ -16,14 +11,19 @@ class Main {
     MainWindow window = new MainWindow();
     WindowPane pane = new WindowPane();
 
+    window.setContentPane(pane);
+
+
+    LiterallyJustASquare square = new LiterallyJustASquare();
+    pane.add(square, JLayeredPane.PALETTE_LAYER);
+    square.repaint();
+
     holder.gRun = new GameRunner();
     pane.add(holder.gRun, JLayeredPane.DEFAULT_LAYER);
-    
     
     WelcomeWindow welcome = new WelcomeWindow();
     pane.add(welcome,JLayeredPane.POPUP_LAYER);
 
-    window.setContentPane(pane);
     window.setVisible(true);
     window.pack();
     
@@ -36,7 +36,6 @@ class Main {
     
     Component[] comps2 = pane.getComponents();
     for(int i = 0; i < comps2.length; i++)  System.out.println(comps2[i] + "\n");
-
-    holder.gRun.start();
+    //holder.gRun.start();
     }
   }

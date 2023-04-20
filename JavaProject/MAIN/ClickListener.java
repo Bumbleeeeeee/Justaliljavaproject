@@ -21,16 +21,19 @@ public GameRunner gRun = holder.gRun;
     //Returns click
     System.out.println("Mouse clicked (# of clicks: " + e.getClickCount() + ")" + "\n\t@ " + (Xselect) + ", " + (Yselect));
     
+    System.out.println(ChessRunner.gameActive);
+    if(ChessRunner.gameActive){
     //checks if there is a selection(for the highlighting) managed in PieceManager :)
-    if(PieceManager.curSelection == null)
-      PieceManager.onClick(Xselect, Yselect);
+      if(PieceManager.curSelection == null)
+        PieceManager.onClick(Xselect, Yselect);
 
-    //if theres a selection it carries out the move
-    else{
-      int[] end = new int[]{Yselect,Xselect};
+      //if theres a selection it carries out the move
+      else{
+        int[] end = new int[]{Yselect,Xselect};
       
-      holder.board.movePiece(PieceManager.curSelection, end);
-      PieceManager.curSelection = null;
+        holder.board.movePiece(PieceManager.curSelection, end);
+        PieceManager.curSelection = null;
+      }
     }
   }
 
@@ -40,11 +43,13 @@ public GameRunner gRun = holder.gRun;
   
 
     public void mouseEntered(MouseEvent e) {
-       saySomething("Mouse entered", e);}
+       //saySomething("Mouse entered", e);
+      }
   
 
     public void mouseExited(MouseEvent e) {
-       saySomething("Mouse exited", e);}
+       //saySomething("Mouse exited", e);
+      }
   
 
     public void mouseClicked(MouseEvent e) {

@@ -14,10 +14,16 @@ public class ChessRunner{
     System.out.println("welcome");
     Board board = holder.board;
     System.out.println("??");
-    int level = 0;
+    int level = -1; //level has been made -1 for no AI; if you change, make sure to keep the check in getMove so it can be used for later!!
     gameActive = true;
+    /* 
+    ===========================commented bc the scan bricks the entire thing D:==========================
+    update, its all been commented out, the while statement prevents any other methods from running, we just need to do something else insetead! 
+    Shouldnt be too bad, i can fit it all into the Update method within Gamerunner!*/
+    System.out.println("putting this here so youre not confused: a bunch of code has been commented\nchessrunner line20 for info! :D");
+    /* 
     Scanner scan = new Scanner(System.in);
-    level = scan.nextInt();
+    level = scan.nextInt(); 
     ComputerPlayer computerPlayer = new ComputerPlayer(board, false);
     while (gameActive) {
       int status = board.checkStatus(board.isWhiteTurn());
@@ -33,6 +39,6 @@ public class ChessRunner{
       } else {
         if (board.isWhiteTurn() == false) computerPlayer.getMove(level);
       }
-    }
+    }*/
   }
 }

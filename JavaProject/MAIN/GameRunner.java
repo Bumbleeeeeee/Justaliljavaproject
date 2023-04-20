@@ -1,7 +1,6 @@
 import javax.swing.JPanel;
 import java.awt.*;
 import java.lang.Runnable;
-import java.util.concurrent.TimeUnit;
 
 //This is essentially the object that is the panel on which the board is in, it makes up the window and manages updates
 public class GameRunner extends JPanel implements Runnable{
@@ -61,8 +60,6 @@ public class GameRunner extends JPanel implements Runnable{
     
     startGameThread();
     ChessRunner.run();
-    
-    repaint();
   }
 
 

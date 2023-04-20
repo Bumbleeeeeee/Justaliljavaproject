@@ -7,5 +7,4 @@ public class holder{
   public static ClickListener cListen;
   
   public static MainWindow window;
-  //public static LayeredPane windowL;
 }

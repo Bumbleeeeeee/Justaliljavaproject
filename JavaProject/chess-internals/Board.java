@@ -42,7 +42,7 @@ class Board {
 
           g2.drawImage(background, curX, curY, gRun.tileSize, gRun.tileSize, null);
 
-          //draws selection square, tbd if this works
+          //draws selection square
           if(PieceManager.curSelection != null && ((PieceManager.curSelection[0] * 48) == curY && (PieceManager.curSelection[1] * 48) == curX)){
             Color color = new Color(0, 123, 255, 126); 
             g2.setPaint(color);
