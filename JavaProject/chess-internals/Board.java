@@ -150,40 +150,41 @@ class Board {
   }
 
   public int checkStatus(boolean wT) {
-    Verifier verify = new Verifier(board, whiteT, lastMove);
+    Piece[][] b = copyBoard(board);
+    Verifier verify = new Verifier(b, wT, lastMove);
     boolean inCheck = false;
     boolean canMove = false;
     inCheck = verify.checkforCheck(verify.findKing(wT), wT);
 
     for (int i = 0; i < 8; i++) {
       for (int j = 0; j < 8; j++) {
-        if (board[i][j] != null && board[i][j].isWhite() == wT) {
-          Piece piece = board[i][j];
+        if (b[i][j] != null && b[i][j].isWhite() == wT) {
+          Piece piece = b[i][j];
           for (int a = 0; a < 8; a++) {
-            for (int b = 0; b < 8; b++) {
-              int[] start = {i, j}; int[] end = {a, b};
+            for (int r = 0; r < 8; r++) {
+              int[] start = {i, j}; int[] end = {a, r};
               //System.out.println("i: " + i + " j: " + j + " a: " + a + " b: " + b);
               if (verify.checkStage1(start, end, wT)) {
-                board[start[0]][start[1]] = null;
-                Piece temp = board[end[0]][end[1]];
-                board[end[0]][end[1]] = piece;
+                b[start[0]][start[1]] = null;
+                Piece temp = b[end[0]][end[1]];
+                b[end[0]][end[1]] = piece;
                 if (verify.castling) {
-                  if (end[1] == 2) {board[end[0]][3] = board[end[0]][0]; board[end[0]][0] = null;}
-                  else if (end[1] == 6) {board[end[0]][5] = board[end[0]][7]; board[end[0]][7] = null;}}
+                  if (end[1] == 2) {b[end[0]][3] = b[end[0]][0]; b[end[0]][0] = null;}
+                  else if (end[1] == 6) {b[end[0]][5] = b[end[0]][7]; b[end[0]][7] = null;}}
                 if (verify.enpassant) {
-                  board[start[0]][end[1]] = null;
+                  b[start[0]][end[1]] = null;
                 }
                 if (!verify.checkforCheck(verify.findKing(wT), wT)) {
                   canMove = true;
                 } 
-                board[start[0]][start[1]] = piece;
-                board[end[0]][end[1]] = temp;
+                b[start[0]][start[1]] = piece;
+                b[end[0]][end[1]] = temp;
                 if (verify.castling) {
-                  if (end[1] == 2) {board[end[0]][0] = board[end[0]][3]; board[end[0]][3] = null;}
-                  else if (end[1] == 6) {board[end[0]][7] = board[end[0]][5]; board[end[0]][5] = null;}
+                  if (end[1] == 2) {b[end[0]][0] = b[end[0]][3]; b[end[0]][3] = null;}
+                  else if (end[1] == 6) {b[end[0]][7] = b[end[0]][5]; b[end[0]][5] = null;}
     }
                 if (verify.enpassant) {
-      board[start[0]][end[1]] = new Piece("P", !whiteT);
+      b[start[0]][end[1]] = new Piece("P", !wT);
     }
               }
             }
@@ -193,12 +194,16 @@ class Board {
     }
 
     if (!inCheck && canMove) {
+      System.out.println("0");
       return 0;
     } else if (inCheck && canMove) {
+      System.out.println("1");
       return 1;
     } else if (inCheck && !canMove) {
+      System.out.println("2");
       return 2;
     } else {
+      System.out.println("3");
       return 3;
     }
   }
@@ -216,5 +221,14 @@ class Board {
     return lastMove;
   }
 
+    private Piece[][] copyBoard(Piece[][] hat) {
+    Piece[][] b = new Piece[8][8];
+    for (int i = 0; i < 8; i++) {
+      for (int j = 0; j < 8; j++) {
+        b[i][j] = hat[i][j] == null ? null : hat[i][j];
+      }
+    }
+    return b;
+  }
   
 }
