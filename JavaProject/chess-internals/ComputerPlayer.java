@@ -226,6 +226,7 @@ class ComputerPlayer{
         }
       }
     }
+    //next line returns error occasionally, error is arraylist outofbounds, and it looks like the arraylist has size 0 :sob:
     return moves.get(indexBest);
   }
 
@@ -352,8 +353,4 @@ class ComputerPlayer{
     lastMove[0] = start; lastMove[1] = end;
     return true;
   }
-
-
-  
-
 }
