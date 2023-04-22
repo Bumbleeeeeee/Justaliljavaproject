@@ -87,8 +87,7 @@ public class GameRunner extends JPanel implements Runnable{
         gameActive = false;}
     
     
-    if(vsComputer && holder.board.whiteT == computer.getIsWhite()){
-      System.out.println("computers turn");
+     else if(vsComputer && holder.board.whiteT == computer.getIsWhite()){
       computer.getMove();
     }
   }

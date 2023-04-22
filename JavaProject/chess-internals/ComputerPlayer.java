@@ -262,13 +262,22 @@ class ComputerPlayer{
     }
 
     Piece[][] tree = copyBoard(hat);
+    //check for endgame earlier
+    if (moves.size() == 0) {
+      if (checkStatus(tree, !isWhite, lastMove) == 2) {
+        if (iteration % 2 == 1) return 999999;
+        else return -999999;
+      } else if (checkStatus(tree, !isWhite, lastMove) == 3) return -1000;
+    }
     movePiece(tree, moves.get(indexBest)[0], moves.get(indexBest)[1], lastMove, !isWhite, "Q");
     if (checkStatus(tree, !isWhite, lastMove) == 2) {
+      System.out.println("endgame");
       if (iteration % 2 == 1) return 999999;
       else return -999999;
-    } else if (checkStatus(tree, !isWhite, lastMove) == 3) return 0;
-    if (iteration >= depth && iteration % 2 == 0) {
+    } else if (checkStatus(tree, !isWhite, lastMove) == 3) return -1000;
+    if (iteration >= depth && iteration % 2 == 1) {
       System.out.println(calculatePosScore(hat, isWhite));
+      
       return calculatePosScore(hat, isWhite);
     }
     return evaluate(tree, !isWhite, moves.get(indexBest), iteration + 1, depth);

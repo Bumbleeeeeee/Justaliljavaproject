@@ -27,7 +27,7 @@ class Main {
     window.setVisible(true);
     window.pack();
     
-    System.out.println("\nComponents in window:\n");
+    /*System.out.println("\nComponents in window:\n");
     
     Component[] comps = window.getContentPane().getComponents();
     for(int i = 0; i < comps.length; i++)  System.out.println(comps[i] + "\n");
@@ -36,6 +36,6 @@ class Main {
     
     Component[] comps2 = pane.getComponents();
     for(int i = 0; i < comps2.length; i++)  System.out.println(comps2[i] + "\n");
-    //holder.gRun.start();
+    */
     }
   }

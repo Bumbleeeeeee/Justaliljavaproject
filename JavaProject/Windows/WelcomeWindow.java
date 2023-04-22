@@ -7,6 +7,8 @@ import java.awt.Rectangle;
 import java.awt.event.*;
 import java.awt.Component;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
+import java.awt.event.*;
 
 public class WelcomeWindow extends JPanel{
   
@@ -43,22 +45,21 @@ public class WelcomeWindow extends JPanel{
     button2B3 = new JButton("vs Computer lvl3 [Internal: 3]");
 
     button1A.setBounds(48,96,144,96); button1B.setBounds(192,96,144,96);
-
-    button2B0.setBounds(0,0,240,96); button2B1.setBounds(48,96,240,96); button2B2.setBounds(96,192,240,96); button2B3.setBounds(144,288,240,96);
-    
     button1A.setVisible(true); button1B.setVisible(true);
-
+    button1A.setBackground(Color.white); button1B.setBackground(Color.white);
+    button1A.setFocusPainted(false); button1B.setFocusPainted(false);
+    button1A.setRolloverEnabled(false); button1B.setRolloverEnabled(false);
+    //
+    button2B0.setBounds(0,0,240,96); button2B1.setBounds(48,96,240,96); button2B2.setBounds(96,192,240,96); button2B3.setBounds(144,288,240,96);
     button2B0.setVisible(false); button2B1.setVisible(false); button2B2.setVisible(false); button2B3.setVisible(false);
+    button2B0.setBackground(Color.black); button2B1.setBackground(Color.black); button2B2.setBackground(Color.black); button2B3.setBackground(Color.black);   
+    button2B0.setForeground(Color.white); button2B1.setForeground(Color.white); button2B2.setForeground(Color.white); button2B3.setForeground(Color.white);
+    button2B0.setFocusPainted(false); button2B1.setFocusPainted(false); button2B2.setFocusPainted(false); button2B3.setFocusPainted(false);
+     button2B0.setRolloverEnabled(false); button2B1.setRolloverEnabled(false); button2B2.setRolloverEnabled(false); button2B3.setRolloverEnabled(false);
 
-
-    this.add(button1A);
-    this.add(button1B);
+    this.add(button1A); this.add(button1B);
     
-    this.add(button2B0);
-    this.add(button2B1);
-    this.add(button2B2);
-    this.add(button2B3);
-
+    this.add(button2B0); this.add(button2B1); this.add(button2B2); this.add(button2B3);
 
     this.setVisible(true);
     
@@ -87,9 +88,6 @@ public class WelcomeWindow extends JPanel{
     button1B.addActionListener(new ActionListener() {
 
       public void actionPerformed(ActionEvent e){
-        //holder.gRun.computer = new ComputerPlayer(holder.board, 2, false);
-        //holder.gRun.vsComputer = true;
-
         button2B0.setVisible(true); button2B1.setVisible(true); button2B2.setVisible(true); button2B3.setVisible(true);
         button1A.setVisible(false); button1B.setVisible(false);
       }
@@ -179,8 +177,150 @@ public class WelcomeWindow extends JPanel{
           holder.gRun.start();
         }
       });
+  
+  /////////ROLLOVER FOR JBUTTONS///////////
 
+    //BASE
 
+    button1A.addMouseListener(new MouseListener() {
+      
+      public void mouseExited(MouseEvent e){
+        JButton button = (JButton)e.getSource();
+        
+          button.setBackground(Color.white);
+          button.setForeground(Color.black);
+      }
 
+      public void mouseEntered(MouseEvent e){
+        
+        JButton button = (JButton)e.getSource();
+
+          button.setBackground(Color.black);
+          button.setForeground(Color.white);
+      }
+      
+
+      ////unused////
+      public void mousePressed(MouseEvent e){}
+      public void mouseReleased(MouseEvent e){}
+      public void mouseClicked(MouseEvent e){}  
+    });
+
+    button1B.addMouseListener(new MouseListener() {
+      
+      public void mouseExited(MouseEvent e){
+        JButton button = (JButton)e.getSource();
+        
+          button.setBackground(Color.white);
+          button.setForeground(Color.black);
+      }
+
+      public void mouseEntered(MouseEvent e){
+        JButton button = (JButton)e.getSource();
+
+          button.setBackground(Color.black);
+          button.setForeground(Color.white);
+      }
+      
+
+      ////unused////
+      public void mousePressed(MouseEvent e){}
+      public void mouseReleased(MouseEvent e){}
+      public void mouseClicked(MouseEvent e){}  
+    });
+  
+    //SET 2//
+  
+    button2B0.addMouseListener(new MouseListener() {
+      
+      public void mouseExited(MouseEvent e){
+        JButton button = (JButton)e.getSource();
+        
+          button.setBackground(Color.black);
+          button.setForeground(Color.white);
+      }
+
+      public void mouseEntered(MouseEvent e){
+        JButton button = (JButton)e.getSource();
+
+          button.setBackground(Color.white);
+          button.setForeground(Color.black);
+      }
+      
+
+      ////unused////
+      public void mousePressed(MouseEvent e){}
+      public void mouseReleased(MouseEvent e){}
+      public void mouseClicked(MouseEvent e){}  
+    });
+
+    button2B1.addMouseListener(new MouseListener() {
+      
+      public void mouseExited(MouseEvent e){
+        JButton button = (JButton)e.getSource();
+        
+          button.setBackground(Color.black);
+          button.setForeground(Color.white);
+      }
+
+      public void mouseEntered(MouseEvent e){
+        JButton button = (JButton)e.getSource();
+
+          button.setBackground(Color.white);
+          button.setForeground(Color.black);
+      }
+      
+
+      ////unused////
+      public void mousePressed(MouseEvent e){}
+      public void mouseReleased(MouseEvent e){}
+      public void mouseClicked(MouseEvent e){}  
+    });
+
+    button2B2.addMouseListener(new MouseListener() {
+      
+      public void mouseExited(MouseEvent e){
+        JButton button = (JButton)e.getSource();
+        
+          button.setBackground(Color.black);
+          button.setForeground(Color.white);
+      }
+
+      public void mouseEntered(MouseEvent e){
+        JButton button = (JButton)e.getSource();
+
+          button.setBackground(Color.white);
+          button.setForeground(Color.black);
+      }
+      
+
+      ////unused////
+      public void mousePressed(MouseEvent e){}
+      public void mouseReleased(MouseEvent e){}
+      public void mouseClicked(MouseEvent e){}  
+    });
+
+    button2B3.addMouseListener(new MouseListener() {
+      
+      public void mouseExited(MouseEvent e){
+        JButton button = (JButton)e.getSource();
+        
+          button.setBackground(Color.black);
+          button.setForeground(Color.white);
+      }
+
+      public void mouseEntered(MouseEvent e){
+        JButton button = (JButton)e.getSource();
+
+          button.setBackground(Color.white);
+          button.setForeground(Color.black);
+      }
+      
+
+      ////unused////
+      public void mousePressed(MouseEvent e){}
+      public void mouseReleased(MouseEvent e){}
+      public void mouseClicked(MouseEvent e){}  
+    });
   }
 }

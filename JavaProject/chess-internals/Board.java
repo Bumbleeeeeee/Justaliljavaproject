@@ -40,16 +40,11 @@ class Board {
             e.printStackTrace();
             }
 
-          g2.drawImage(background, curX, curY, gRun.tileSize, gRun.tileSize, null);
+          g2.drawImage(background, curX, curY, GameRunner.tileSize, GameRunner.tileSize, null);
 
           //draws selection square
-          if(PieceManager.curSelection != null && ((PieceManager.curSelection[0] * 48) == curY && (PieceManager.curSelection[1] * 48) == curX)){
-            Color color = new Color(0, 123, 255, 126); 
-            g2.setPaint(color);
-          
-            Rectangle Square = new Rectangle(curX, curY, gRun.tileSize,gRun.tileSize);
-            g2.fill(Square);
-          }
+          if(PieceManager.curSelection != null)
+            drawSelectionSquare(g2, curX, curY);
           
           curX += gRun.tileSize;
           flag = !flag;
@@ -62,7 +57,7 @@ class Board {
     }
   }
 
-  public static void drawTurnBar(boolean whiteTurn, Graphics2D g2){
+  private static void drawTurnBar(boolean whiteTurn, Graphics2D g2){
     
     Rectangle Square = new Rectangle(0,384,383,12);
     
@@ -79,8 +74,19 @@ class Board {
       g2.setPaint(Color.BLACK);
 
     g2.draw(Square);
-
   } 
+
+  private static void drawSelectionSquare(Graphics2D g2, int curX, int curY){
+    
+    if((PieceManager.curSelection[0] * 48) == curY && (PieceManager.curSelection[1] * 48) == curX){
+    
+    Color color = new Color(0, 123, 255, 126); 
+    g2.setPaint(color);
+          
+    Rectangle Square = new Rectangle(curX, curY, GameRunner.tileSize,GameRunner.tileSize);
+    g2.fill(Square);
+    }
+  }
 
 
   public Piece[][] getBoard(){
@@ -194,16 +200,12 @@ class Board {
     }
 
     if (!inCheck && canMove) {
-      System.out.println("0");
       return 0;
     } else if (inCheck && canMove) {
-      System.out.println("1");
       return 1;
     } else if (inCheck && !canMove) {
-      System.out.println("2");
       return 2;
     } else {
-      System.out.println("3");
       return 3;
     }
   }
@@ -230,5 +232,21 @@ class Board {
     }
     return b;
   }
-  
+
+ /* private ArrayList<int[][]> getPossibleMoves(Piece[][] b, boolean white, int[][] lastMove) {
+    Verifier verify = new Verifier(b, white, lastMove);
+    ArrayList<int[][]> moves = new ArrayList<int[][]>();
+    ArrayList<int[]> pieces = getPieces(b, white);
+    for (int i = 0; i < pieces.size(); i++) {
+      for (int j = 0; j < 8; j++) {
+        for (int k = 0; k < 8; k++) {
+          int[] mto = {j, k};
+          if (verify.moveValid(pieces.get(i), mto)) {
+            moves.add(new int[][] {pieces.get(i), mto});
+          }
+        }
+      }
+    }
+    return moves;
+  }*/
 }

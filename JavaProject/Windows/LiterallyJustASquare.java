@@ -15,12 +15,10 @@ public class LiterallyJustASquare extends JPanel{
         public void paint(Graphics g){
   
         super.paintComponent(g);
-
-        System.out.println(g + "\n + yippers");
         Graphics2D g2 = (Graphics2D) g;
     
         Rectangle rect = new Rectangle(0,0,GameRunner.screenHeight, GameRunner.screenWidth);
-        Color color = new Color(0, 120, 220, 120); //126 
+        Color color = new Color(0, 120, 220, 120);
     
         g2.setPaint(color);
         g2.fill(rect);
