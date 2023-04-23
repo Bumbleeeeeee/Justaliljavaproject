@@ -236,7 +236,7 @@ class ComputerPlayer{
     for (int i = 0; i < moves.size(); i++) {
       Piece[][] tree = copyBoard(board.getBoard());
       if (movePiece(tree, moves.get(i)[0], moves.get(i)[1], board.getLastMove(), board.whiteT, "Q")) {
-        double x = evaluate(tree, board.whiteT, board.getLastMove(), 1, 4);
+        double x = evaluate(tree, board.whiteT, board.getLastMove(), 1, 10);//4
         
         if (x >= scoreBest) {
           scoreBest = x; 
