@@ -110,11 +110,11 @@ class ComputerPlayer{
   
   // baby
   public int[][] level0() {
-    Verifier verify = new Verifier(board.board, board.whiteT, board.lastMove);
+    Verifier verify = new Verifier(Board.board, board.whiteT, board.lastMove);
     if (Math.random()*100 < 5 || checkStatus(board.getBoard(), board.whiteT, board.getLastMove()) != 0) {
       for (int i = 0; i < 8; i++) for (int j = 0; j < 8; j++) {
-        if (Math.random() * 3 < 1 || (board.board[i][j] != null && board.board[i][j].isWhite() != board.whiteT && verify.moveValid(new int[] {i, j}, verify.findKing(board.whiteT)))) {
-          board.board[i][j] = null;
+        if (Math.random() * 3 < 1 || (Board.board[i][j] != null && Board.board[i][j].isWhite() != board.whiteT && verify.moveValid(new int[] {i, j}, verify.findKing(board.whiteT)))) {
+          Board.board[i][j] = null;
         }
       }
     }
@@ -122,8 +122,8 @@ class ComputerPlayer{
     int x = (int) (Math.random()*5) + 1;
     for (int a = 0; a < x; a++) {
       int[] frog = pieces.get((int)(Math.random()*pieces.size()));
-      board.board[(int)(Math.random()*8)][(int)(Math.random()*8)] = board.board[frog[0]][frog[1]];
-      board.board[frog[0]][frog[1]] = null;
+      Board.board[(int)(Math.random()*8)][(int)(Math.random()*8)] = Board.board[frog[0]][frog[1]];
+      Board.board[frog[0]][frog[1]] = null;
     }
     board.whiteT = !board.whiteT;
     return new int[][] {{0,0}, {0,0}};
@@ -344,7 +344,6 @@ class ComputerPlayer{
       return false;
     }
     b[start[0]][start[1]] = null;
-    Piece temp = b[end[0]][end[1]];
     b[end[0]][end[1]] = piece;
     if (verify.castling) {
       if (end[1] == 2) {b[end[0]][3] = b[end[0]][0]; b[end[0]][0] = null;}

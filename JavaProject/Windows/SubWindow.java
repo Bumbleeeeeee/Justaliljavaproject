@@ -37,9 +37,6 @@ public class SubWindow extends JPanel{
     
     subWindowExists = true;
     System.out.println("yipeeeeeeeeeeeeee");
-    
-    //add if jpanel
-    window.getContentPane().add(this,JLayeredPane.POPUP_LAYER);
 
     this.setLocation(0,0);
     
@@ -97,8 +94,6 @@ optionA.setBackground(Color.black); optionB.setBackground(Color.black); optionC.
     
     public void actionPerformed(ActionEvent event){
       System.out.println("button was pushed!!!!!");
-
-      JButton button = (JButton)event.getSource();
 
         Board.board[locationY][locationX] = null;  
         

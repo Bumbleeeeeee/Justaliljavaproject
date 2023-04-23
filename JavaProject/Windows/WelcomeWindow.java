@@ -1,14 +1,9 @@
 import javax.swing.JButton;
 import javax.swing.*;
 import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Rectangle;
 import java.awt.event.*;
-import java.awt.Component;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
-import java.awt.event.*;
 
 public class WelcomeWindow extends JPanel{
   

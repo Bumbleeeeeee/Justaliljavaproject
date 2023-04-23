@@ -1,5 +1,4 @@
 import javax.swing.JLayeredPane;
-import java.awt.Component;
 
 class Main {
   public static void main(String[] args) {

@@ -20,21 +20,20 @@ class Board {
   
   //draws squares on the board
   public static void drawBoard(Graphics2D g2){
-    GameRunner gRun = holder.gRun;
     boolean flag = true;
 
     int curX = 0;
     int curY = 0;
     
     if(!SubWindow.subWindowExists){
-    for(int currentRow = 0; currentRow < gRun.screenRows; currentRow++){
-      for(int currentCollumn = 0; currentCollumn < gRun.screenColumns; currentCollumn++){
+    for(int currentRow = 0; currentRow < GameRunner.screenRows; currentRow++){
+      for(int currentCollumn = 0; currentCollumn < GameRunner.screenColumns; currentCollumn++){
 
           
           try{
-            background = ImageIO.read(new File("JavaProject/images/white.png"));
-            if(flag)
             background = ImageIO.read(new File("JavaProject/images/black.png"));
+            if(flag)
+            background = ImageIO.read(new File("JavaProject/images/white.png"));
           }
           catch(IOException e){
             e.printStackTrace();
@@ -46,11 +45,11 @@ class Board {
           if(PieceManager.curSelection != null)
             drawSelectionSquare(g2, curX, curY);
           
-          curX += gRun.tileSize;
+          curX += GameRunner.tileSize;
           flag = !flag;
       }
       flag = !flag;
-      curY += gRun.tileSize; curX = 0;
+      curY += GameRunner.tileSize; curX = 0;
     }
 
     drawTurnBar(holder.board.whiteT, g2);
@@ -79,12 +78,30 @@ class Board {
   private static void drawSelectionSquare(Graphics2D g2, int curX, int curY){
     
     if((PieceManager.curSelection[0] * 48) == curY && (PieceManager.curSelection[1] * 48) == curX){
+      Color color = new Color(0, 123, 255, 126); 
+      g2.setPaint(color);
+
+      Rectangle Square = new Rectangle(curX, curY, GameRunner.tileSize,GameRunner.tileSize);
+      g2.fill(Square);}
+  
+
     
-    Color color = new Color(0, 123, 255, 126); 
-    g2.setPaint(color);
-          
-    Rectangle Square = new Rectangle(curX, curY, GameRunner.tileSize,GameRunner.tileSize);
-    g2.fill(Square);
+
+    //draws possible moves
+
+    Board boardObj = holder.board;
+    
+    Piece piece = board[PieceManager.curSelection[0]][PieceManager.curSelection[1]];
+    ArrayList<int[]> possibleMoves = boardObj.getPossibleMoves(piece, piece.isWhite(), boardObj.lastMove, new int[] {curX / 48, curY / 48});
+    
+    for(int[] curArr : possibleMoves){
+      if(curArr[0] == curY / 48 && curArr[1] == curX / 48){
+        Color color = new Color(180, 255, 180, 180); 
+        g2.setPaint(color);
+        
+        Rectangle Square = new Rectangle(curArr[1] * 48, curArr[0] * 48, GameRunner.tileSize,GameRunner.tileSize);
+        g2.fill(Square);
+      }
     }
   }
 
@@ -128,7 +145,7 @@ class Board {
       return false;
     }
     board[start[0]][start[1]] = null;
-    Piece temp = board[end[0]][end[1]];
+    
     board[end[0]][end[1]] = piece;
     if (verify.castling) {
       if (end[1] == 2) {board[end[0]][3] = board[end[0]][0]; board[end[0]][0] = null;}
@@ -140,10 +157,10 @@ class Board {
     
     if (piece.getType() == "P" && ((end[0] == 0 && piece.isWhite() == true) || (end[0] == 7 && piece.isWhite() == false))) {
       System.out.println("What would you like to promote your pawn to? (enter Q for queen, N for knight, or R for rook)");
-      JLayeredPane jp = new JLayeredPane();
       
       SubWindow.subWindowExists = true;
       SubWindow tempWin = new SubWindow(piece, end[0], end[1], holder.window);
+      holder.window.getContentPane().add(tempWin,JLayeredPane.POPUP_LAYER);
     }
     
     whiteT = !whiteT;
@@ -215,10 +232,6 @@ class Board {
     return whiteT;
   }
 
-  private void reportError(String msg){
-    //System.out.println(msg);
-  }
-
   public int[][] getLastMove() {
     return lastMove;
   }
@@ -233,20 +246,30 @@ class Board {
     return b;
   }
 
- /* private ArrayList<int[][]> getPossibleMoves(Piece[][] b, boolean white, int[][] lastMove) {
-    Verifier verify = new Verifier(b, white, lastMove);
-    ArrayList<int[][]> moves = new ArrayList<int[][]>();
-    ArrayList<int[]> pieces = getPieces(b, white);
-    for (int i = 0; i < pieces.size(); i++) {
-      for (int j = 0; j < 8; j++) {
-        for (int k = 0; k < 8; k++) {
-          int[] mto = {j, k};
-          if (verify.moveValid(pieces.get(i), mto)) {
-            moves.add(new int[][] {pieces.get(i), mto});
-          }
+  private ArrayList<int[]> getPossibleMoves(Piece piece, boolean white, int[][] lastMove, int[] curLocation) {
+    Verifier verify = new Verifier(board, white, lastMove);
+    ArrayList<int[]> moves = new ArrayList<int[]>();
+
+      for (int j = 0; j < GameRunner.screenRows; j++) {
+        for (int k = 0; k < GameRunner.screenColumns; k++) {
+          
+          int[] posMove = {j, k};
+
+          if (verify.moveValid(getPieceLocation(piece), posMove)){
+            moves.add(posMove);}
         }
       }
+      
+      return moves;
+  }
+
+  private int[] getPieceLocation(Piece piece){
+    for(int i = 0; i < GameRunner.screenRows; i++){
+      for(int j = 0; j < GameRunner.screenColumns; j++){
+        if(piece.equals(board[i][j]))
+          return new int[] {i,j};
+      }
     }
-    return moves;
-  }*/
+    return new int[] {0,0};
+  }
 }

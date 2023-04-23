@@ -15,8 +15,8 @@ public GameRunner gRun = holder.gRun;
   public void mousePressed(MouseEvent e) {
     
     //locations of the selection as if it were array (not pixel based)
-    int Xselect = e.getX() / gRun.tileSize;
-    int Yselect = e.getY() / gRun.tileSize;
+    int Xselect = e.getX() / GameRunner.tileSize;
+    int Yselect = e.getY() / GameRunner.tileSize;
 
     //Returns click
     System.out.println("Mouse clicked (# of clicks: " + e.getClickCount() + ")" + "\n\t@ " + (Xselect) + ", " + (Yselect));
