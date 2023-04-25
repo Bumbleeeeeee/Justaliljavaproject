@@ -5,8 +5,8 @@ class ComputerPlayer{
   private final double[][] pawnPos = {
         {0.0,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0},
         {5.0,  5.0,  5.0,  5.0,  5.0,  5.0,  5.0,  5.0},
-        {1.0,  1.0,  2.0,  3.5,  3.5,  2.0,  1.0,  1.0},
-        {0.5,  0.5,  1.0,  3.0,  3.0,  1.0,  0.5,  0.5},
+        {1.0,  1.0,  2.0,  4.0,  4.0,  2.0,  1.0,  1.0},
+        {0.5,  0.5,  1.0,  3.5,  3.5,  1.0,  0.5,  0.5},
         {0.5,  0.5,  1.0,  3.0,  3.0,  1.0,  0.5,  0.5},
         {0.5, -0.5, -1.0,  0.0,  0.0, -1.0, -0.5,  0.5},
         {0.5,  1.0, 1.0,  -2.0, -2.0,  1.0,  1.0,  0.5},
@@ -85,6 +85,10 @@ class ComputerPlayer{
 
   public boolean getIsWhite(){
     return wP;
+  }
+
+  public void setIsWhite(boolean flag){
+    this.wP = flag;
   }
 
  public void getMove() {
@@ -173,7 +177,13 @@ class ComputerPlayer{
     return b;
   }
 
-  private double calculatePosScore(Piece[][] hat, boolean isWhite) {
+  private double calculatePosScore(Piece[][] hat, boolean isWhite, int[][] lastMove) {
+    if (checkStatus(hat, isWhite, lastMove) == 2) {
+        return -999999;
+      } else if (checkStatus(hat, !isWhite, lastMove) == 2) {
+      return 999999;
+    }
+      else if (checkStatus(hat, !isWhite, lastMove) == 3) return -1000;
     double score = 0;
     for (int i = 0; i < 8; i++) {
       for (int j = 0; j < 8; j++) {
@@ -219,7 +229,7 @@ class ComputerPlayer{
     for (int i = 0; i < moves.size(); i++) {
       Piece[][] tree = copyBoard(board.getBoard());
       if (movePiece(tree, moves.get(i)[0], moves.get(i)[1], board.getLastMove(), board.whiteT, "Q")) {
-        double x = calculatePosScore(tree, board.whiteT);
+        double x = calculatePosScore(tree, board.whiteT, moves.get(i));
         if (x >= scoreBest) {
           scoreBest = x; 
           indexBest = i;
@@ -236,14 +246,15 @@ class ComputerPlayer{
     for (int i = 0; i < moves.size(); i++) {
       Piece[][] tree = copyBoard(board.getBoard());
       if (movePiece(tree, moves.get(i)[0], moves.get(i)[1], board.getLastMove(), board.whiteT, "Q")) {
-        double x = evaluate(tree, board.whiteT, board.getLastMove(), 1, 10);//4
-        
+        double x = evaluate(tree, board.whiteT, board.getLastMove(), 1, 4);//18 is okay at startgame, 4
+        System.out.println(x);
         if (x >= scoreBest) {
           scoreBest = x; 
           indexBest = i;
         }
       }
     }
+    
     return moves.get(indexBest);
   }
 
@@ -253,7 +264,7 @@ class ComputerPlayer{
     for (int i = 0; i < moves.size(); i++) {
       Piece[][] tree = copyBoard(hat);
       if (movePiece(tree, moves.get(i)[0], moves.get(i)[1], lastMove, !isWhite, "Q")) {
-        double x = calculatePosScore(tree, !isWhite);
+        double x = calculatePosScore(tree, !isWhite, moves.get(i));
         if (x >= scoreBest) {
           scoreBest = x; 
           indexBest = i;
@@ -265,20 +276,18 @@ class ComputerPlayer{
     //check for endgame earlier
     if (moves.size() == 0) {
       if (checkStatus(tree, !isWhite, lastMove) == 2) {
-        if (iteration % 2 == 1) return 999999;
+        if (iteration % 2 == 1) return 9999*(100-iteration);
         else return -999999;
       } else if (checkStatus(tree, !isWhite, lastMove) == 3) return -1000;
     }
     movePiece(tree, moves.get(indexBest)[0], moves.get(indexBest)[1], lastMove, !isWhite, "Q");
     if (checkStatus(tree, !isWhite, lastMove) == 2) {
       System.out.println("endgame");
-      if (iteration % 2 == 1) return 999999;
+      if (iteration % 2 == 1) return 9999*(100-iteration);
       else return -999999;
     } else if (checkStatus(tree, !isWhite, lastMove) == 3) return -1000;
     if (iteration >= depth && iteration % 2 == 1) {
-      System.out.println(calculatePosScore(hat, isWhite));
-      
-      return calculatePosScore(hat, isWhite);
+      return calculatePosScore(hat, isWhite, moves.get(indexBest));
     }
     return evaluate(tree, !isWhite, moves.get(indexBest), iteration + 1, depth);
   }
@@ -356,9 +365,16 @@ class ComputerPlayer{
     if (piece.getType() == "P" && ((end[0] == 0 && piece.isWhite() == true) || (end[0] == 7 && piece.isWhite() == false))) {
       piece = new Piece(promote, whiteT);
     }
-
-    b[end[0]][end[1]].madeAMove();
     lastMove[0] = start; lastMove[1] = end;
     return true;
   }
+
+
+  /*
+
+  public double evaluate1(Piece[][] hat, isWhite, ) {
+  
+  }
+
+  */
 }

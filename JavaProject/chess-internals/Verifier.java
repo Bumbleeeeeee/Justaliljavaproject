@@ -76,6 +76,7 @@ public class Verifier {
 
   public boolean checkStage1(int[] start, int[] end, boolean wT) {
     Piece piece = board[start[0]][start[1]];
+    if (piece == null) return false;
     String type = piece.getType();
     
     if (type.equals("P")) {

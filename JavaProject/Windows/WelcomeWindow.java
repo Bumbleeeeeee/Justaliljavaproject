@@ -14,6 +14,9 @@ public class WelcomeWindow extends JPanel{
     JButton button2B2;
     JButton button2B3;
 
+  JButton bORw_White;
+  JButton bORw_Black;
+
     LiterallyJustASquare square;
 
 
@@ -34,23 +37,38 @@ public class WelcomeWindow extends JPanel{
     button1A = new JButton("2 Player!");
     button1B = new JButton("VS Computer!");
 
+    button1A.setBounds(48,96,144,96); button1B.setBounds(192,96,144,96);
+    button1A.setVisible(true); button1B.setVisible(true);
+    
+    button1A.setBackground(Color.white); button1B.setBackground(Color.white);
+    button1A.setFocusPainted(false); button1B.setFocusPainted(false);
+    button1A.setRolloverEnabled(false); button1B.setRolloverEnabled(false);
+    //
+
     button2B0 = new JButton("vs a literal baby [Internal: 0]");
     button2B1 = new JButton("vs Computer lvl1 [Internal: 1]");
     button2B2 = new JButton("vs Computer lvl2 [Internal: 2]");
     button2B3 = new JButton("vs Computer lvl3 [Internal: 3]");
 
-    button1A.setBounds(48,96,144,96); button1B.setBounds(192,96,144,96);
-    button1A.setVisible(true); button1B.setVisible(true);
-    button1A.setBackground(Color.white); button1B.setBackground(Color.white);
-    button1A.setFocusPainted(false); button1B.setFocusPainted(false);
-    button1A.setRolloverEnabled(false); button1B.setRolloverEnabled(false);
-    //
     button2B0.setBounds(0,0,240,96); button2B1.setBounds(48,96,240,96); button2B2.setBounds(96,192,240,96); button2B3.setBounds(144,288,240,96);
     button2B0.setVisible(false); button2B1.setVisible(false); button2B2.setVisible(false); button2B3.setVisible(false);
+    
     button2B0.setBackground(Color.black); button2B1.setBackground(Color.black); button2B2.setBackground(Color.black); button2B3.setBackground(Color.black);   
     button2B0.setForeground(Color.white); button2B1.setForeground(Color.white); button2B2.setForeground(Color.white); button2B3.setForeground(Color.white);
     button2B0.setFocusPainted(false); button2B1.setFocusPainted(false); button2B2.setFocusPainted(false); button2B3.setFocusPainted(false);
      button2B0.setRolloverEnabled(false); button2B1.setRolloverEnabled(false); button2B2.setRolloverEnabled(false); button2B3.setRolloverEnabled(false);
+    //
+    
+    bORw_White = new JButton("test");
+    bORw_Black = new JButton("test2");
+    
+    bORw_White.setVisible(false); bORw_Black.setVisible(false);
+    bORw_White.setBounds(0,0,100,200); bORw_Black.setBounds(100,0,100,200);
+
+    bORw_White.setBackground(Color.white); bORw_Black.setBackground(Color.black);
+    bORw_White.setFocusPainted(false); bORw_Black.setFocusPainted(false);
+    bORw_White.setRolloverEnabled(false); bORw_Black.setFocusPainted(false);
+    
 
     this.add(button1A); this.add(button1B);
     
@@ -94,19 +112,14 @@ public class WelcomeWindow extends JPanel{
         public void actionPerformed(ActionEvent e){
           holder.gRun.computer = new ComputerPlayer(holder.board, 0, false);
           holder.gRun.vsComputer = true;
+          
+          button2B0.setVisible(false);
+          button2B1.setVisible(false);
+          button2B2.setVisible(false);
+          button2B3.setVisible(false);
 
-          //Exits introframe
-          JButton sourceButton = (JButton) e.getSource();
-          MainWindow win = (MainWindow)SwingUtilities.getWindowAncestor(sourceButton);
-          WindowPane pane = (WindowPane)win.getContentPane();
-        
-          WelcomeWindow welcome = (WelcomeWindow)pane.getComponent(0);
-          LiterallyJustASquare square = (LiterallyJustASquare)pane.getComponent(1);
-
-          welcome.setVisible(false);
-          square.clearWelcomeRectangle();
-
-          holder.gRun.start();
+          bORw_White.setVisible(true);
+          bORw_Black.setVisible(true);
         }
       });
       //
@@ -116,18 +129,13 @@ public class WelcomeWindow extends JPanel{
           holder.gRun.computer = new ComputerPlayer(holder.board, 1, false);
           holder.gRun.vsComputer = true;
 
-          //Exits introframe
-          JButton sourceButton = (JButton) e.getSource();
-          MainWindow win = (MainWindow)SwingUtilities.getWindowAncestor(sourceButton);
-          WindowPane pane = (WindowPane)win.getContentPane();
-        
-          WelcomeWindow welcome = (WelcomeWindow)pane.getComponent(0);
-          LiterallyJustASquare square = (LiterallyJustASquare)pane.getComponent(1);
-
-          welcome.setVisible(false);
-          square.clearWelcomeRectangle();
-
-          holder.gRun.start();
+          button2B0.setVisible(false);
+          button2B1.setVisible(false);
+          button2B2.setVisible(false);
+          button2B3.setVisible(false);
+          
+          bORw_White.setVisible(true);
+          bORw_Black.setVisible(true);
         }
       });
       //   
@@ -137,18 +145,13 @@ public class WelcomeWindow extends JPanel{
           holder.gRun.computer = new ComputerPlayer(holder.board, 2, false);
           holder.gRun.vsComputer = true;
 
-          //Exits introframe
-          JButton sourceButton = (JButton) e.getSource();
-          MainWindow win = (MainWindow)SwingUtilities.getWindowAncestor(sourceButton);
-          WindowPane pane = (WindowPane)win.getContentPane();
-        
-          WelcomeWindow welcome = (WelcomeWindow)pane.getComponent(0);
-          LiterallyJustASquare square = (LiterallyJustASquare)pane.getComponent(1);
-
-          welcome.setVisible(false);
-          square.clearWelcomeRectangle();
-
-          holder.gRun.start();
+          button2B0.setVisible(false);
+          button2B1.setVisible(false);
+          button2B2.setVisible(false);
+          button2B3.setVisible(false);
+          
+          bORw_White.setVisible(true);
+          bORw_Black.setVisible(true);
         }
       });
       // 
@@ -158,20 +161,61 @@ public class WelcomeWindow extends JPanel{
           holder.gRun.computer = new ComputerPlayer(holder.board, 3, false);
           holder.gRun.vsComputer = true;
 
-          //Exits introframe
-          JButton sourceButton = (JButton) e.getSource();
-          MainWindow win = (MainWindow)SwingUtilities.getWindowAncestor(sourceButton);
-          WindowPane pane = (WindowPane)win.getContentPane();
-        
-          WelcomeWindow welcome = (WelcomeWindow)pane.getComponent(0);
-          LiterallyJustASquare square = (LiterallyJustASquare)pane.getComponent(1);
-
-          welcome.setVisible(false);
-          square.clearWelcomeRectangle();
-
-          holder.gRun.start();
+          button2B0.setVisible(false);
+          button2B1.setVisible(false);
+          button2B2.setVisible(false);
+          button2B3.setVisible(false);
+          
+          bORw_White.setVisible(true);
+          bORw_Black.setVisible(true);
         }
       });
+
+    //COLOR//
+
+    bORw_White.addActionListener(new ActionListener() {
+
+      public void actionPerformed(ActionEvent e){
+        
+        ComputerPlayer computer = holder.gRun.computer;
+        computer.setIsWhite(false);
+        
+        //Exits introframe
+        JButton sourceButton = (JButton) e.getSource();
+        MainWindow win = (MainWindow)SwingUtilities.getWindowAncestor(sourceButton);
+        WindowPane pane = (WindowPane)win.getContentPane();
+        
+        WelcomeWindow welcome = (WelcomeWindow)pane.getComponent(0);
+         LiterallyJustASquare square = (LiterallyJustASquare)pane.getComponent(1);
+
+        welcome.setVisible(false);
+        square.clearWelcomeRectangle();
+
+        holder.gRun.start();
+      }
+    });
+
+    bORw_Black.addActionListener(new ActionListener() {
+
+      public void actionPerformed(ActionEvent e){
+
+        ComputerPlayer computer = holder.gRun.computer;
+        computer.setIsWhite(true);
+      
+        //Exits introframe
+        JButton sourceButton = (JButton) e.getSource();
+        MainWindow win = (MainWindow)SwingUtilities.getWindowAncestor(sourceButton);
+        WindowPane pane = (WindowPane)win.getContentPane();
+        
+        WelcomeWindow welcome = (WelcomeWindow)pane.getComponent(0);
+         LiterallyJustASquare square = (LiterallyJustASquare)pane.getComponent(1);
+
+        welcome.setVisible(false);
+        square.clearWelcomeRectangle();
+
+        holder.gRun.start();
+      }
+    });
   
   /////////ROLLOVER FOR JBUTTONS///////////
 
@@ -309,6 +353,54 @@ public class WelcomeWindow extends JPanel{
 
           button.setBackground(Color.white);
           button.setForeground(Color.black);
+      }
+      
+
+      ////unused////
+      public void mousePressed(MouseEvent e){}
+      public void mouseReleased(MouseEvent e){}
+      public void mouseClicked(MouseEvent e){}  
+    });
+
+    //SET 3//
+
+    bORw_White.addMouseListener(new MouseListener(){
+
+      public void mouseExited(MouseEvent e){
+        JButton button = (JButton)e.getSource();
+        
+          button.setBackground(Color.white);
+          //button.setForeground(Color.white);
+      }
+
+      public void mouseEntered(MouseEvent e){
+        JButton button = (JButton)e.getSource();
+
+          button.setBackground(Color.black);
+          //button.setForeground(Color.black);
+      }
+      
+
+      ////unused////
+      public void mousePressed(MouseEvent e){}
+      public void mouseReleased(MouseEvent e){}
+      public void mouseClicked(MouseEvent e){}  
+    });
+
+    bORw_Black.addMouseListener(new MouseListener(){
+
+      public void mouseExited(MouseEvent e){
+        JButton button = (JButton)e.getSource();
+        
+          button.setBackground(Color.black);
+          //button.setForeground(Color.white);
+      }
+
+      public void mouseEntered(MouseEvent e){
+        JButton button = (JButton)e.getSource();
+
+          button.setBackground(Color.white);
+          //button.setForeground(Color.black);
       }
       
 
