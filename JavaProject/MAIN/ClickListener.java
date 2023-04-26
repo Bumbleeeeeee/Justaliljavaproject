@@ -21,7 +21,11 @@ public GameRunner gRun = holder.gRun;
     //Returns click
     System.out.println("Mouse clicked (# of clicks: " + e.getClickCount() + ")" + "\n\t@ " + (Xselect) + ", " + (Yselect));
 
-      if(holder.gRun.gameActive){
+    Boolean vsComputer = holder.gRun.vsComputer;
+    Boolean computerWhite = holder.gRun.computer.getIsWhite();
+    Boolean curTurn = holder.board.whiteT;
+    
+      if(holder.gRun.gameActive && (vsComputer && computerWhite != curTurn)){
     //checks if there is a selection(for the highlighting) managed in PieceManager :)
       if(PieceManager.curSelection == null)
         PieceManager.onClick(Xselect, Yselect);
