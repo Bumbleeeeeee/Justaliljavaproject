@@ -120,24 +120,6 @@ class Board {
     whiteT = true;
   }
   
-  public void printBoard() {
-    boolean flipflop = false;
-    System.out.println("  0 1 2 3 4 5 6 7");
-    for (int i = 0; i < board.length; i++) {
-      System.out.print(i + " ");
-      for (int j = 0; j < board[0].length; j++) {
-        if (flipflop) System.out.print("\u001B[46m");
-        else System.out.print("\u001B[44m");
-        if (board[i][j] == null) System.out.print("__");
-        else System.out.print(board[i][j].getIcon());
-        System.out.print("\u001B[0m");
-        flipflop = !flipflop;
-      }
-      System.out.println("x");
-      flipflop = !flipflop;
-    }
-  }
-
   public boolean movePiece(int[] start, int[] end) {
     Verifier verify = new Verifier(board, whiteT, lastMove);
     Piece piece = board[start[0]][start[1]];

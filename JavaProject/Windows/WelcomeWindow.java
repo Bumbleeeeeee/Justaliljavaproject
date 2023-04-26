@@ -193,7 +193,13 @@ public class WelcomeWindow extends JPanel{
     public void mouseEntered(MouseEvent e){
       JButton button = (JButton)e.getSource();
 
-      if(white){
+      if(isColorHelper && white)
+        button.setBorder(blackBorder);
+
+      else if(isColorHelper && !white)
+        button.setBorder(whiteBorder);
+      
+      else if(white){
         button.setBackground(Color.black); button.setForeground(Color.white);
         button.setBorder(whiteBorder);}
       

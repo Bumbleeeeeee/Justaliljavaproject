@@ -8,6 +8,8 @@ class Main {
     
     
     MainWindow window = new MainWindow();
+    window.setIconImage(Piece.getPieceIcon("K", false));
+
     WindowPane pane = new WindowPane();
 
     window.setContentPane(pane);
@@ -26,15 +28,5 @@ class Main {
     window.setVisible(true);
     window.pack();
     
-    /*System.out.println("\nComponents in window:\n");
-    
-    Component[] comps = window.getContentPane().getComponents();
-    for(int i = 0; i < comps.length; i++)  System.out.println(comps[i] + "\n");
-
-    System.out.println("\nComponents in window's pane:\n");
-    
-    Component[] comps2 = pane.getComponents();
-    for(int i = 0; i < comps2.length; i++)  System.out.println(comps2[i] + "\n");
-    */
     }
   }
