@@ -84,8 +84,8 @@ public class GameRunner extends JPanel implements Runnable{
         gameActive = false;} 
         
         else if (status == 3) {
-        System.out.println(" STALEMATE");
-        gameActive = false;}
+        gameActive = false;
+        }
     
     
      else if(vsComputer && holder.board.whiteT == computer.getIsWhite()){
