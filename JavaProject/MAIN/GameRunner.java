@@ -72,19 +72,23 @@ public class GameRunner extends JPanel implements Runnable{
 
   //////////////////
 
-
+//Status:
+  //1 = check
+  //2 = checkmate
+  //3 = stalemate
+  
   public void update(){
 
     Board board = holder.board;
     
     int status = board.checkStatus(board.isWhiteTurn());
       if (status == 2) {
-        if (board.isWhiteTurn()) System.out.print(" BLACK WINS! ");
-        if (!board.isWhiteTurn()) System.out.print(" WHITE WINS! ");
+        if (board.isWhiteTurn()){ System.out.print(" BLACK WINS! "); new ExitWindow();}
+        if (!board.isWhiteTurn()){ System.out.print(" WHITE WINS! "); new ExitWindow();}
         gameActive = false;} 
         
         else if (status == 3) {
-        gameActive = false;
+        gameActive = false; new ExitWindow();
         }
     
     

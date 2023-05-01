@@ -365,15 +365,62 @@ class ComputerPlayer{
     if (piece.getType() == "P" && ((end[0] == 0 && piece.isWhite() == true) || (end[0] == 7 && piece.isWhite() == false))) {
       piece = new Piece(promote, whiteT);
     }
-    lastMove[0] = start; lastMove[1] = end;
     return true;
   }
 
 
   /*
 
-  public double evaluate1(Piece[][] hat, isWhite, ) {
+  public int[][] level4() {
+    ArrayList<int[][]> moves = getPossibleMoves(board.getBoard(), board.whiteT, board.getLastMove());
+    int indexBest = 0; double scoreBest = -99999;
+    for (int i = 0; i < moves.size(); i++) {
+      Piece[][] tree = copyBoard(board.getBoard());
+      if (movePiece(tree, moves.get(i)[0], moves.get(i)[1], board.getLastMove(), board.whiteT, "Q")) {
+        double x = minimax(tree, 3, -10000, 10000, moves.get(i), !board.isWhite, false);
+        System.out.println(x);
+        if (x >= scoreBest) {
+          scoreBest = x; 
+          indexBest = i;
+        }
+      }
+    }
+    return moves.get(indexBest);
+  }
   
+  private double minimax (Piece[][] game, int depth, double alpha, double beta, int[][] lastMove, boolean isWhite, boolean isMaximizingPlayer) {
+  
+    if (depth == 0) {
+        return calculatePosScore(game, isWhite, lastMove);
+    }
+
+    ArrayList<int[][]> moves = getPossibleMoves(game, isWhite, lastMove);
+
+    if (isMaximisingPlayer) {
+        double bestMove = -9999;
+        for (int i = 0; i < moves.size(); i++) {
+        Piece[][] tree = copyBoard(game);
+          if (movePiece(tree, moves.get(i)[0], moves.get(i)[1], board.getLastMove(), isWhite, "Q"))
+            bestMove = Math.max(bestMove, minimax(tree, depth - 1, alpha, beta, !isMaximisingPlayer));
+            alpha = Math.max(alpha, bestMove);
+            if (beta <= alpha) {
+                return bestMove;
+            }
+        }
+        return bestMove;
+    } else {
+        double bestMove = 9999;
+        for (var i = 0; i < newGameMoves.length; i++) {
+            game.ugly_move(newGameMoves[i]);
+            bestMove = Math.min(bestMove, minimax(depth - 1, game, alpha, beta, !isMaximisingPlayer));
+            game.undo();
+            beta = Math.min(beta, bestMove);
+            if (beta <= alpha) {
+                return bestMove;
+            }
+        }
+        return bestMove;
+        
   }
 
   */
