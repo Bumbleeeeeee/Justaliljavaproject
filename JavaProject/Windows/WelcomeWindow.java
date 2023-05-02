@@ -134,7 +134,7 @@ public class WelcomeWindow extends JPanel{
       button2B3.addActionListener(new ActionListener() {
         
         public void actionPerformed(ActionEvent e){
-          holder.gRun.computer = new ComputerPlayer(holder.board, 3, false);
+          holder.gRun.computer = new ComputerPlayer(holder.board, 4, false);
           holder.gRun.vsComputer = true;
 
           bMethod();
