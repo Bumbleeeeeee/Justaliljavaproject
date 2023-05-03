@@ -27,6 +27,19 @@ class Main {
 
     window.setVisible(true);
     window.pack();
+
+    /* 
+    JFrame frame = new Frame();
+    frame.setDefaultCloseOperation(JFrame_EXIT_ON_CLOSE);
+
+    JPanel panel = new Panel();
+    panel.setBounds(x,y,width,height);
+    panel.setVisible(true);
+
+    frame.setVisible(true);
+    frame.add(panel);
+    frame.pack();
+    */
     
     }
   }
