@@ -2,6 +2,10 @@ import javax.swing.JPanel;
 import java.awt.*;
 import java.lang.Runnable;
 
+
+  //MAJOR CHANGES// 
+////WORKING VERSION////
+
 //This is essentially the object that is the panel on which the board is in, it makes up the window and manages updates
 public class GameRunner extends JPanel implements Runnable{
 

@@ -8,10 +8,6 @@ import java.io.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-
-//this class is intended to extend the JPanel class however in its current state, the buttons will not work as a JPanel class so it will be kept as a JFrame until i get around to fixing it. :sob:
-
-//ive added comments to easily switch between JFrame and JPanel
 public class SubWindow extends JPanel{
 
   static boolean subWindowExists = false;
