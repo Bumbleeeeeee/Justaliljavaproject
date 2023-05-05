@@ -106,8 +106,8 @@ class ComputerPlayer{
         int[][] hat;
         if (difficulty == 0) hat = level0();
         else if (difficulty == 1) hat = level1();
-        else if (difficulty == 2) hat = level2();
-        else hat = level3();
+        else if (difficulty == 2) hat = level3();
+        else hat = level4();
         board.movePiece(hat[0], hat[1]);
      }
   }
@@ -369,7 +369,6 @@ class ComputerPlayer{
   }
 
 
-  /*
 
   public int[][] level4() {
     ArrayList<int[][]> moves = getPossibleMoves(board.getBoard(), board.whiteT, board.getLastMove());
@@ -377,7 +376,7 @@ class ComputerPlayer{
     for (int i = 0; i < moves.size(); i++) {
       Piece[][] tree = copyBoard(board.getBoard());
       if (movePiece(tree, moves.get(i)[0], moves.get(i)[1], board.getLastMove(), board.whiteT, "Q")) {
-        double x = minimax(tree, 3, -10000, 10000, moves.get(i), !board.isWhite, false);
+        double x = minimax(tree, 3, -10000, 10000, moves.get(i), !board.whiteT, false);
         System.out.println(x);
         if (x >= scoreBest) {
           scoreBest = x; 
@@ -388,7 +387,7 @@ class ComputerPlayer{
     return moves.get(indexBest);
   }
   
-  private double minimax (Piece[][] game, int depth, double alpha, double beta, int[][] lastMove, boolean isWhite, boolean isMaximizingPlayer) {
+  private double minimax(Piece[][] game, int depth, double alpha, double beta, int[][] lastMove, boolean isWhite, boolean isMaximizingPlayer) {
   
     if (depth == 0) {
         return calculatePosScore(game, isWhite, lastMove);
@@ -396,32 +395,36 @@ class ComputerPlayer{
 
     ArrayList<int[][]> moves = getPossibleMoves(game, isWhite, lastMove);
 
-    if (isMaximisingPlayer) {
+    if (isMaximizingPlayer) {
         double bestMove = -9999;
         for (int i = 0; i < moves.size(); i++) {
-        Piece[][] tree = copyBoard(game);
-          if (movePiece(tree, moves.get(i)[0], moves.get(i)[1], board.getLastMove(), isWhite, "Q"))
-            bestMove = Math.max(bestMove, minimax(tree, depth - 1, alpha, beta, !isMaximisingPlayer));
+          Piece[][] tree = copyBoard(game);
+          if (movePiece(tree, moves.get(i)[0], moves.get(i)[1], board.getLastMove(), isWhite, "Q")) {
+            bestMove = Math.max(bestMove, minimax(tree, depth - 1, alpha, beta, moves.get(i), !isWhite, !isMaximizingPlayer));
             alpha = Math.max(alpha, bestMove);
             if (beta <= alpha) {
                 return bestMove;
             }
+          }
         }
         return bestMove;
     } else {
         double bestMove = 9999;
-        for (var i = 0; i < newGameMoves.length; i++) {
-            game.ugly_move(newGameMoves[i]);
-            bestMove = Math.min(bestMove, minimax(depth - 1, game, alpha, beta, !isMaximisingPlayer));
-            game.undo();
+        for (var i = 0; i < moves.size(); i++) {
+
+          Piece[][] tree = copyBoard(game);
+          if (movePiece(tree, moves.get(i)[0], moves.get(i)[1], board.getLastMove(), isWhite, "Q")) {
+            bestMove = Math.max(bestMove, minimax(tree, depth - 1, alpha, beta, moves.get(i), !isWhite, !isMaximizingPlayer));
             beta = Math.min(beta, bestMove);
             if (beta <= alpha) {
                 return bestMove;
             }
+          }
         }
         return bestMove;
+    }
         
   }
 
-  */
+  
 }

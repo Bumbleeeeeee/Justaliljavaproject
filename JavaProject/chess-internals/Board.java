@@ -67,12 +67,29 @@ class Board {
 
     g2.fill(Square);
 
+    //
+    
+    Color back1 = new Color(84,96,82,255);
+    Color fore1 = new Color(211,224,207,255);
+    
+    Rectangle Square2 = new Rectangle(0,384,383,12);
+    g2.setStroke(new BasicStroke((float) 5));
+
+    g2.setPaint(back1);
+
+    g2.draw(Square2);
+
+    //
+    
+    Rectangle Square3 = new Rectangle(3, 387, 377, 6);
+    g2.setStroke(new BasicStroke((float) 0.5));
+    
     if(!whiteTurn)
       g2.setPaint(Color.WHITE);
     else
       g2.setPaint(Color.BLACK);
 
-    g2.draw(Square);
+    g2.draw(Square3);
   } 
 
   private static void drawSelectionSquare(Graphics2D g2, int curX, int curY){

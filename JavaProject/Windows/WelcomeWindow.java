@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.event.*;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
+import java.awt.Dimension;
 
 import javax.swing.border.Border;
 import javax.swing.BorderFactory;
@@ -51,7 +52,7 @@ public class WelcomeWindow extends JPanel{
 
     button2B0 = new JButton("vs a literal baby [Internal: 0]");
     button2B1 = new JButton("vs Computer lvl1 [Internal: 1]");
-    button2B2 = new JButton("vs Computer lvl2 [Internal: 2]");
+    button2B2 = new JButton("vs Computer lvl2 [Internal: 3]");
     button2B3 = new JButton("vs Computer lvl3 [Internal: 4]");
     button2B0.setVisible(false); button2B1.setVisible(false); button2B2.setVisible(false); button2B3.setVisible(false);
 
@@ -86,6 +87,12 @@ public class WelcomeWindow extends JPanel{
       public void actionPerformed(ActionEvent e){
         
         JButton sourceButton = (JButton) e.getSource();
+        
+        MainWindow win = (MainWindow)SwingUtilities.getWindowAncestor(sourceButton);
+        WindowPane pane = (WindowPane)win.getContentPane();
+        pane.setPreferredSize(new Dimension(GameRunner.screenWidth, GameRunner.screenHeight + 13));
+        win.pack();
+        
         exitAndStart(sourceButton);
       }
     });

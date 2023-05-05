@@ -7,7 +7,7 @@ import java.lang.Runnable;
 ////WORKING VERSION////
 
 //This is essentially the object that is the panel on which the board is in, it makes up the window and manages updates
-public class GameRunner extends JPanel implements Runnable{
+public class GameRunner extends JPanel{
 
   public static final int tileSize = 48;
   public final double FPS = 2.5;
@@ -34,43 +34,14 @@ public class GameRunner extends JPanel implements Runnable{
     PieceManager.instantiatePieces();
     addMouseListener(holder.cListen);
   }
-
-
-  public void startGameThread(){
-    gameThread = new Thread(this);
-    gameThread.start();
-  }
-
-  @Override
-  public void run(){
-    
-    double drawInterval = 1000000000 / FPS;
-    double delta = 0;
-    long lastTime = System.nanoTime();
-    long currentTime;
-
-    while(gameThread != null){
-
-      currentTime = System.nanoTime();
-
-      delta += (currentTime - lastTime) / drawInterval;
-
-      lastTime = currentTime;
-
-      if(delta >= 1 && !SubWindow.subWindowExists){
-        update();
-        repaint();
-        delta--;
-      }
-    }
-  }
   
   public void start(){
     System.out.println("Started");
 
-    startGameThread();
+    //startGameThread();
     gameActive = true;
-    //ChessRunner.run();
+    update();
+    repaint();
   }
 
 

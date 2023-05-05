@@ -25,6 +25,7 @@ public class SubWindow extends JPanel{
 
 
   public SubWindow(Piece piece, int locationY, int locationX, MainWindow window){
+    
     this.piece = piece;
     this.locationY = locationY;
     this.locationX = locationX;
@@ -77,6 +78,9 @@ optionA.setBackground(Color.black); optionB.setBackground(Color.black); optionC.
     optionB.addActionListener(new ActionHandler("B", this));
     optionC.addActionListener(new ActionHandler("N", this));
     optionD.addActionListener(new ActionHandler("R", this));
+
+    holder.gRun.update();
+    holder.gRun.repaint();
   }
 
   private class ActionHandler implements ActionListener{
@@ -91,13 +95,15 @@ optionA.setBackground(Color.black); optionB.setBackground(Color.black); optionC.
     public void actionPerformed(ActionEvent event){
       System.out.println("button was pushed!!!!!");
 
-        Board.board[locationY][locationX] = null;  
+      Board.board[locationY][locationX] = null;  
         
-        Board.board[locationY][locationX] = new Piece(id, piece.isWhite());
+      Board.board[locationY][locationX] = new Piece(id, piece.isWhite());
 
       
-        subWindowExists = false;
-        subwindow.setVisible(false);
+      subWindowExists = false;
+      subwindow.setVisible(false);
+      holder.gRun.update();
+      holder.gRun.repaint();
     }
   }
 

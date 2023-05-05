@@ -1,8 +1,6 @@
 import java.awt.event.MouseListener;
 import java.awt.event.*;
 public class ClickListener implements MouseListener {
-
-public GameRunner gRun = holder.gRun;
 //hehe steals code
         
 //where initialization occurs:
@@ -40,6 +38,8 @@ public GameRunner gRun = holder.gRun;
         PieceManager.curSelection = null;
       }
     }
+    holder.gRun.update();
+    holder.gRun.repaint();
   }
 
     public void mouseReleased(MouseEvent e) {
