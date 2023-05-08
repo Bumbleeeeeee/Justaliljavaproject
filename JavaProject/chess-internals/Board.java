@@ -70,7 +70,6 @@ class Board {
     //
     
     Color back1 = new Color(84,96,82,255);
-    Color fore1 = new Color(211,224,207,255);
     
     Rectangle Square2 = new Rectangle(0,384,383,12);
     g2.setStroke(new BasicStroke((float) 5));

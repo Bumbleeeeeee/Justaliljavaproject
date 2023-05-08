@@ -1,14 +1,10 @@
 import javax.swing.JButton;
 import javax.swing.*;
 import java.awt.Color;
-import java.awt.image.BufferedImage;
-import javax.imageio.ImageIO;
-import java.io.*;
 import javax.swing.JLabel;
 //for helper
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.awt.Component;
 
 import javax.swing.border.Border;
 import javax.swing.BorderFactory;

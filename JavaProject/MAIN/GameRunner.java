@@ -1,6 +1,5 @@
 import javax.swing.JPanel;
 import java.awt.*;
-import java.lang.Runnable;
 
 
   //MAJOR CHANGES// 
@@ -38,7 +37,6 @@ public class GameRunner extends JPanel{
   public void start(){
     System.out.println("Started");
 
-    //startGameThread();
     gameActive = true;
     update();
     repaint();
