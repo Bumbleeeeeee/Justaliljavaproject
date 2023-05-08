@@ -105,9 +105,9 @@ class ComputerPlayer{
         System.out.println("computer's turn");
         int[][] hat;
         if (difficulty == 0) hat = level0();
-        else if (difficulty == 1) hat = level1();
-        else if (difficulty == 2) hat = level3();
-        else hat = level4();
+        else if (difficulty == 1) hat = level3();
+        else if (difficulty == 2) hat = level4(2);
+        else hat = level4(4);
         board.movePiece(hat[0], hat[1]);
      }
   }
@@ -370,13 +370,13 @@ class ComputerPlayer{
 
 
 
-  public int[][] level4() {
+  public int[][] level4(int depth) {
     ArrayList<int[][]> moves = getPossibleMoves(board.getBoard(), board.whiteT, board.getLastMove());
     int indexBest = 0; double scoreBest = -99999;
     for (int i = 0; i < moves.size(); i++) {
       Piece[][] tree = copyBoard(board.getBoard());
       if (movePiece(tree, moves.get(i)[0], moves.get(i)[1], board.getLastMove(), board.whiteT, "Q")) {
-        double x = minimax(tree, 3, -10000, 10000, moves.get(i), !board.whiteT, false);
+        double x = minimax(tree, depth, -1000000, 1000000, moves.get(i), !board.whiteT, false);
         System.out.println(x);
         if (x >= scoreBest) {
           scoreBest = x; 
@@ -390,13 +390,13 @@ class ComputerPlayer{
   private double minimax(Piece[][] game, int depth, double alpha, double beta, int[][] lastMove, boolean isWhite, boolean isMaximizingPlayer) {
   
     if (depth == 0) {
-        return calculatePosScore(game, isWhite, lastMove);
+        return calculatePosScore1(game, !isWhite);
     }
 
     ArrayList<int[][]> moves = getPossibleMoves(game, isWhite, lastMove);
 
     if (isMaximizingPlayer) {
-        double bestMove = -9999;
+        double bestMove = -999999;
         for (int i = 0; i < moves.size(); i++) {
           Piece[][] tree = copyBoard(game);
           if (movePiece(tree, moves.get(i)[0], moves.get(i)[1], board.getLastMove(), isWhite, "Q")) {
@@ -409,12 +409,12 @@ class ComputerPlayer{
         }
         return bestMove;
     } else {
-        double bestMove = 9999;
+        double bestMove = 999999;
         for (var i = 0; i < moves.size(); i++) {
 
           Piece[][] tree = copyBoard(game);
           if (movePiece(tree, moves.get(i)[0], moves.get(i)[1], board.getLastMove(), isWhite, "Q")) {
-            bestMove = Math.max(bestMove, minimax(tree, depth - 1, alpha, beta, moves.get(i), !isWhite, !isMaximizingPlayer));
+            bestMove = Math.min(bestMove, minimax(tree, depth - 1, alpha, beta, moves.get(i), !isWhite, !isMaximizingPlayer));
             beta = Math.min(beta, bestMove);
             if (beta <= alpha) {
                 return bestMove;
@@ -425,6 +425,48 @@ class ComputerPlayer{
     }
         
   }
+
+
+  
+  private double calculatePosScore1(Piece[][] hat, boolean isWhite) {
+    double score = 0;
+    for (int i = 0; i < 8; i++) {
+      for (int j = 0; j < 8; j++) {
+        if (hat[i][j] != null) {
+          double val = 0;
+          if (hat[i][j].getType().equals("P")) {
+            if (hat[i][j].isWhite()) val += pawnPos[i][j];
+            else val += pawnPos[7-i][7-j];
+            val += pawnValue;
+          } else if (hat[i][j].getType().equals("R")) {
+            if (hat[i][j].isWhite()) val += rookPos[i][j];
+            else val += rookPos[7-i][7-j];
+            val += rookValue;
+          } else if (hat[i][j].getType().equals("N")) {
+            if (hat[i][j].isWhite()) val += knightPos[i][j];
+            else val += knightPos[7-i][7-j];
+            val += knightValue;
+          } else if (hat[i][j].getType().equals("B")) {
+            if (hat[i][j].isWhite()) val += bishopPos[i][j];
+            else val += bishopPos[7-i][7-j];
+            val += bishopValue;
+          } else if (hat[i][j].getType().equals("Q")) {
+            if (hat[i][j].isWhite()) val += queenPos[i][j];
+            else val += queenPos[7-i][7-j];
+            val += queenValue;
+          } else {
+            if (hat[i][j].isWhite()) val += kingPos[i][j];
+            else val += kingPos[7-i][7-j];
+            val += kingValue;
+          }
+          if (hat[i][j].isWhite() == isWhite) score += val;
+          else score -= val;
+        }
+      }
+    }
+    return score;
+  }
+
 
   
 }

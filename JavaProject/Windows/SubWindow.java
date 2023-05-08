@@ -99,11 +99,14 @@ optionA.setBackground(Color.black); optionB.setBackground(Color.black); optionC.
         
       Board.board[locationY][locationX] = new Piece(id, piece.isWhite());
 
+      JButton button = (JButton)event.getSource();
+      MainWindow window = (MainWindow)SwingUtilities.getWindowAncestor(button);
+      WindowPane pane = (WindowPane)window.getContentPane();
       
       subWindowExists = false;
-      subwindow.setVisible(false);
       holder.gRun.update();
       holder.gRun.repaint();
+      pane.remove(subwindow);
     }
   }
 

@@ -1,10 +1,6 @@
 import javax.swing.JPanel;
 import java.awt.*;
 
-
-  //MAJOR CHANGES// 
-////WORKING VERSION////
-
 //This is essentially the object that is the panel on which the board is in, it makes up the window and manages updates
 public class GameRunner extends JPanel{
 
@@ -52,6 +48,7 @@ public class GameRunner extends JPanel{
   
   public void update(){
 
+    repaint();
     Board board = holder.board;
     
     int status = board.checkStatus(board.isWhiteTurn());

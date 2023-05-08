@@ -69,6 +69,8 @@ public class ExitWindow extends JPanel{
       
       public void actionPerformed(ActionEvent e){
       System.out.println("RESTART");
+
+      Main.restart(holder.window);
       }
     });
 
@@ -77,6 +79,7 @@ public class ExitWindow extends JPanel{
       public void actionPerformed(ActionEvent e){
         System.out.println("EXIT");
 
+        holder.window.dispose();
       }
     });
 

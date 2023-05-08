@@ -25,12 +25,12 @@ public class LiterallyJustASquare extends JPanel{
       }
     
     
-      public void clearWelcomeRectangle(){
+      public void clearWelcomeRectangle(WindowPane pane){
         
         Graphics g = this.getGraphics();
         g.clearRect(0, 0, getWidth(), getHeight());
 
-        this.setVisible(false);
+        pane.remove(this);
       }
         
 }

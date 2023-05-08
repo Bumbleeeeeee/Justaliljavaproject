@@ -6,6 +6,14 @@ public class PieceManager {
     public static int[] curSelection;
 
     public static void instantiatePieces(){
+
+    //clears
+      for(int row = 0; row < pieceArray.length; row++)
+        for(int col = 0; col < pieceArray[row].length; col++)
+          pieceArray[row][col] = null;
+      
+    //instantiates  
+      
       for (int i = 0; i < pieceArray[0].length; i++) {
         pieceArray[1][i] = new Piece("P", false); 
         pieceArray[6][i] = new Piece("P", true); 

@@ -1,3 +1,6 @@
+//NOTE:
+//PANELS GET GARBAGE COLLECTED ON REMOVAL, CHANGE SETVISIBLE TO REMOVE
+
 import javax.swing.JLayeredPane;
 
 class Main {
@@ -9,12 +12,16 @@ class Main {
     
     MainWindow window = new MainWindow();
     window.setIconImage(Piece.getPieceIcon("K", false));
-
     WindowPane pane = new WindowPane();
-
     window.setContentPane(pane);
 
+    initiate(window);
+    }
 
+
+  public static void initiate(MainWindow window){
+    WindowPane pane = (WindowPane)window.getContentPane();
+    
     LiterallyJustASquare square = new LiterallyJustASquare();
     pane.add(square, JLayeredPane.PALETTE_LAYER);
     square.repaint();
@@ -27,19 +34,13 @@ class Main {
 
     window.setVisible(true);
     window.pack();
+    }
 
-    /* 
-    JFrame frame = new Frame();
-    frame.setDefaultCloseOperation(JFrame_EXIT_ON_CLOSE);
+    public static void restart(MainWindow window){
+      WindowPane pane = (WindowPane)window.getContentPane();
 
-    JPanel panel = new Panel();
-    panel.setBounds(x,y,width,height);
-    panel.setVisible(true);
+      pane.removeAll();
 
-    frame.setVisible(true);
-    frame.add(panel);
-    frame.pack();
-    */
-    
+      initiate(window);
     }
   }

@@ -51,9 +51,9 @@ public class WelcomeWindow extends JPanel{
     //
 
     button2B0 = new JButton("vs a literal baby [Internal: 0]");
-    button2B1 = new JButton("vs Computer lvl1 [Internal: 1]");
-    button2B2 = new JButton("vs Computer lvl2 [Internal: 3]");
-    button2B3 = new JButton("vs Computer lvl3 [Internal: 4]");
+    button2B1 = new JButton("vs Computer lvl1 [Internal: 3]");
+    button2B2 = new JButton("vs Computer lvl2 [Internal: 4-2]");
+    button2B3 = new JButton("vs Computer lvl3 [Internal: 4-4]");
     button2B0.setVisible(false); button2B1.setVisible(false); button2B2.setVisible(false); button2B3.setVisible(false);
 
     button2B0.setBounds(0,0,240,96); button2B1.setBounds(48,96,240,96); button2B2.setBounds(96,192,240,96); button2B3.setBounds(144,288,240,96);
@@ -246,8 +246,8 @@ public class WelcomeWindow extends JPanel{
     WelcomeWindow welcome = (WelcomeWindow)pane.getComponent(0);
     LiterallyJustASquare square = (LiterallyJustASquare)pane.getComponent(1);
 
-    welcome.setVisible(false);
-    square.clearWelcomeRectangle();
+    pane.remove(welcome);
+    square.clearWelcomeRectangle(pane);
 
     holder.gRun.start();
   }
