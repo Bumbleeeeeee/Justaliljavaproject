@@ -92,8 +92,8 @@ public class Verifier {
         return true;
       }
       
-      if ((wT && end[0] == start[0] - 1 && Math.abs(start[1] - end[1]) == 1 && lastMove[1][1] == end[1] && lastMove[1][0] == start[0] && lastMove[0][0] == 1 && board[lastMove[1][0]][lastMove[1][1]] != null && !board[lastMove[1][0]][lastMove[1][1]].isWhite() && board[lastMove[1][0]][lastMove[1][1]].getType() == "P") ||
-         (!wT && end[0] == start[0] + 1 && Math.abs(start[1] - end[1]) == 1 && lastMove[1][1] == end[1] && lastMove[1][0] == start[0] && lastMove[0][0] == 6 && board[lastMove[1][0]][lastMove[1][1]] != null && board[lastMove[1][0]][lastMove[1][1]].isWhite() && board[lastMove[1][0]][lastMove[1][1]].getType() == "P")) {
+      if ((wT && end[0] == start[0] - 1 && Math.abs(start[1] - end[1]) == 1 && lastMove[1][1] == end[1] && lastMove[1][0] == start[0] && lastMove[0][0] == 1 && board[lastMove[1][0]][lastMove[1][1]] != null && !board[lastMove[1][0]][lastMove[1][1]].isWhite() && start[0] == 3 && board[lastMove[1][0]][lastMove[1][1]].getType() == "P") ||
+         (!wT && end[0] == start[0] + 1 && Math.abs(start[1] - end[1]) == 1 && lastMove[1][1] == end[1] && lastMove[1][0] == start[0] && lastMove[0][0] == 6 && board[lastMove[1][0]][lastMove[1][1]] != null && board[lastMove[1][0]][lastMove[1][1]].isWhite() && start[0] == 4 && board[lastMove[1][0]][lastMove[1][1]].getType() == "P")) {
         enpassant = true;
         return true;
       }
