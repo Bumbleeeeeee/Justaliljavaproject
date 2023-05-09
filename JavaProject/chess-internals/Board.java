@@ -58,7 +58,16 @@ class Board {
 
   private static void drawTurnBar(boolean whiteTurn, Graphics2D g2){
     
-    Rectangle Square = new Rectangle(0,384,383,12);
+    Color back1 = new Color(84,96,82,255);
+    
+    Rectangle Square2 = new Rectangle(0,384,384,13);
+    g2.setPaint(back1);
+
+    g2.fill(Square2);
+   
+    //
+   
+    Rectangle Square = new Rectangle(3,387,287,7); //377
     
     if(whiteTurn)
       g2.setPaint(Color.WHITE);
@@ -69,18 +78,7 @@ class Board {
 
     //
     
-    Color back1 = new Color(84,96,82,255);
-    
-    Rectangle Square2 = new Rectangle(0,384,383,12);
-    g2.setStroke(new BasicStroke((float) 5));
-
-    g2.setPaint(back1);
-
-    g2.draw(Square2);
-
-    //
-    
-    Rectangle Square3 = new Rectangle(3, 387, 377, 6);
+    Rectangle Square3 = new Rectangle(3, 387, 287, 7); //377
     g2.setStroke(new BasicStroke((float) 0.5));
     
     if(!whiteTurn)
@@ -89,6 +87,8 @@ class Board {
       g2.setPaint(Color.BLACK);
 
     g2.draw(Square3);
+
+    g2.setStroke(new BasicStroke((float) 1));
   } 
 
   private static void drawSelectionSquare(Graphics2D g2, int curX, int curY){
@@ -98,7 +98,7 @@ class Board {
       g2.setPaint(color);
 
       Rectangle Square = new Rectangle(curX, curY, GameRunner.tileSize,GameRunner.tileSize);
-      g2.fill(Square);}
+    g2.fill(Square);}
   
 
     
@@ -159,6 +159,7 @@ class Board {
       SubWindow.subWindowExists = true;
       SubWindow tempWin = new SubWindow(piece, end[0], end[1], holder.window);
       holder.window.getContentPane().add(tempWin,JLayeredPane.POPUP_LAYER);
+      
     }
     
     whiteT = !whiteT;

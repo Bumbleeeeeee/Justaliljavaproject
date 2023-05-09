@@ -36,7 +36,6 @@ public class SubWindow extends JPanel{
     System.out.println("yipeeeeeeeeeeeeee");
 
     this.setLocation(0,0);
-    
     this.setSize(384,105);
     
     this.setLayout(null);

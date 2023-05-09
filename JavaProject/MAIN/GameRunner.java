@@ -1,3 +1,4 @@
+import javax.swing.JButton;
 import javax.swing.JPanel;
 import java.awt.*;
 
@@ -12,7 +13,7 @@ public class GameRunner extends JPanel{
   public static final int screenWidth = tileSize * screenColumns;
   public static final int screenHeight = tileSize * screenRows;
 
-  Thread gameThread;
+  JButton button;
 
   boolean vsComputer = false;
   ComputerPlayer computer;
@@ -28,6 +29,8 @@ public class GameRunner extends JPanel{
 
     PieceManager.instantiatePieces();
     addMouseListener(holder.cListen);
+
+    //addJButton();
   }
   
   public void start(){
@@ -37,8 +40,12 @@ public class GameRunner extends JPanel{
     update();
     repaint();
   }
-
-
+  
+  
+  
+  
+  
+  
   //////////////////
 
 //Status:

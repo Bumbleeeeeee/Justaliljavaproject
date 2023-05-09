@@ -109,6 +109,8 @@ class ComputerPlayer{
         else if (difficulty == 2) hat = level4(2);
         else hat = level4(4);
         board.movePiece(hat[0], hat[1]);
+
+        holder.gRun.update();
      }
   }
   

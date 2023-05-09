@@ -88,11 +88,6 @@ public class WelcomeWindow extends JPanel{
         
         JButton sourceButton = (JButton) e.getSource();
         
-        MainWindow win = (MainWindow)SwingUtilities.getWindowAncestor(sourceButton);
-        WindowPane pane = (WindowPane)win.getContentPane();
-        pane.setPreferredSize(new Dimension(GameRunner.screenWidth, GameRunner.screenHeight + 13));
-        win.pack();
-        
         exitAndStart(sourceButton);
       }
     });
@@ -245,10 +240,13 @@ public class WelcomeWindow extends JPanel{
         
     WelcomeWindow welcome = (WelcomeWindow)pane.getComponent(0);
     LiterallyJustASquare square = (LiterallyJustASquare)pane.getComponent(1);
-
+    
     pane.remove(welcome);
     square.clearWelcomeRectangle(pane);
+    pane.addJButton();
 
+    pane.setPreferredSize(new Dimension(GameRunner.screenWidth, GameRunner.screenHeight + 13));
+    win.pack();
     holder.gRun.start();
   }
 
