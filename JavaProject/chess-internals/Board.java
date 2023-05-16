@@ -154,11 +154,13 @@ class Board {
     }
     
     if (piece.getType() == "P" && ((end[0] == 0 && piece.isWhite() == true) || (end[0] == 7 && piece.isWhite() == false))) {
-      System.out.println("What would you like to promote your pawn to? (enter Q for queen, N for knight, or R for rook)");
-      
-      SubWindow.subWindowExists = true;
+      if (GameRunner.vsComputer && holder.board.whiteT == GameRunner.computer.getIsWhite()) {
+        board[end[0]][end[1]] = new Piece("Q", piece.isWhite());
+      } else {
+        SubWindow.subWindowExists = true;
       SubWindow tempWin = new SubWindow(piece, end[0], end[1], holder.window);
       holder.window.getContentPane().add(tempWin,JLayeredPane.POPUP_LAYER);
+      }
       
     }
     

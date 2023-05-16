@@ -105,9 +105,9 @@ class ComputerPlayer{
         System.out.println("computer's turn");
         int[][] hat;
         if (difficulty == 0) hat = level0();
-        else if (difficulty == 1) hat = level3();
-        else if (difficulty == 2) hat = level4(2);
-        else hat = level4(4);
+        else if (difficulty == 1) hat = level2();
+        else if (difficulty == 2) hat = level3(4);
+        else hat = level4(2);
         board.movePiece(hat[0], hat[1]);
 
         holder.gRun.update();
@@ -242,13 +242,13 @@ class ComputerPlayer{
     return moves.get(indexBest);
   }
 
-  public int[][] level3() {
+  public int[][] level3(int depth) {
     ArrayList<int[][]> moves = getPossibleMoves(board.getBoard(), board.whiteT, board.getLastMove());
     int indexBest = 0; double scoreBest = -99999;
     for (int i = 0; i < moves.size(); i++) {
       Piece[][] tree = copyBoard(board.getBoard());
       if (movePiece(tree, moves.get(i)[0], moves.get(i)[1], board.getLastMove(), board.whiteT, "Q")) {
-        double x = evaluate(tree, board.whiteT, board.getLastMove(), 1, 4);//18 is okay at startgame, 4
+        double x = evaluate(tree, board.whiteT, board.getLastMove(), 1, depth);//18 is okay at startgame, 4
         System.out.println(x);
         if (x >= scoreBest) {
           scoreBest = x; 
@@ -370,8 +370,6 @@ class ComputerPlayer{
     return true;
   }
 
-
-
   public int[][] level4(int depth) {
     ArrayList<int[][]> moves = getPossibleMoves(board.getBoard(), board.whiteT, board.getLastMove());
     int indexBest = 0; double scoreBest = -99999;
@@ -468,6 +466,14 @@ class ComputerPlayer{
     }
     return score;
   }
+
+  /*
+  public int[][] endgame(Piece[][] board, boolean white, boolean winningSide) {
+  
+  ArrayList<int[][]> moves = 
+    
+  }
+  */
 
 
   

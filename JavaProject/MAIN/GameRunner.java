@@ -15,8 +15,8 @@ public class GameRunner extends JPanel{
 
   JButton button;
 
-  boolean vsComputer = false;
-  ComputerPlayer computer;
+  public static boolean vsComputer = false;
+  public static ComputerPlayer computer;
   
   boolean gameActive = false;
   
