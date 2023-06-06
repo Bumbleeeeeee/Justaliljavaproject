@@ -108,6 +108,7 @@ public class WelcomeWindow extends JPanel{
         public void actionPerformed(ActionEvent e){
           holder.gRun.computer = new ComputerPlayer(holder.board, 0, false);
           holder.gRun.vsComputer = true;
+          GameRunner.diff = "Infant";
           
           bMethod();
         }
@@ -118,6 +119,7 @@ public class WelcomeWindow extends JPanel{
         public void actionPerformed(ActionEvent e){
           holder.gRun.computer = new ComputerPlayer(holder.board, 1, false);
           holder.gRun.vsComputer = true;
+          GameRunner.diff = "Easy";
 
           bMethod();
         }
@@ -128,6 +130,7 @@ public class WelcomeWindow extends JPanel{
         public void actionPerformed(ActionEvent e){
           holder.gRun.computer = new ComputerPlayer(holder.board, 2, false);
           holder.gRun.vsComputer = true;
+          GameRunner.diff = "Medium";
 
           bMethod();
         }
@@ -138,6 +141,7 @@ public class WelcomeWindow extends JPanel{
         public void actionPerformed(ActionEvent e){
           holder.gRun.computer = new ComputerPlayer(holder.board, 4, false);
           holder.gRun.vsComputer = true;
+          GameRunner.diff = "Hard";
 
           bMethod();
         }

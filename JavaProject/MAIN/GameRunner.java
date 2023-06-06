@@ -17,6 +17,7 @@ public class GameRunner extends JPanel{
 
   public static boolean vsComputer = false;
   public static ComputerPlayer computer;
+  public static String diff;
   
   boolean gameActive = false;
   

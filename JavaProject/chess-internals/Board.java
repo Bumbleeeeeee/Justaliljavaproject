@@ -1,8 +1,10 @@
+import javax.swing.*;
 import java.util.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import javax.swing.JLayeredPane;
+import javax.swing.JLabel;
 
 import java.io.*;
 
@@ -66,29 +68,34 @@ class Board {
     g2.fill(Square2);
    
     //
+   if(!GameRunner.vsComputer){
    
     Rectangle Square = new Rectangle(3,387,287,7); //377
     
-    if(whiteTurn)
-      g2.setPaint(Color.WHITE);
-    else
-      g2.setPaint(Color.BLACK);
-
-    g2.fill(Square);
+      if(whiteTurn) g2.setPaint(Color.WHITE);
+      else g2.setPaint(Color.BLACK);
+      g2.fill(Square);
 
     //
     
-    Rectangle Square3 = new Rectangle(3, 387, 287, 7); //377
-    g2.setStroke(new BasicStroke((float) 0.5));
+      Rectangle Square3 = new Rectangle(3, 387, 287, 7); //377
+      g2.setStroke(new BasicStroke((float) 0.5));
     
-    if(!whiteTurn)
-      g2.setPaint(Color.WHITE);
-    else
-      g2.setPaint(Color.BLACK);
+      if(!whiteTurn) g2.setPaint(Color.WHITE);
+      else g2.setPaint(Color.BLACK);
+      g2.draw(Square3);
+      g2.setStroke(new BasicStroke((float) 1));
+   }
 
-    g2.draw(Square3);
+    //else{
+      //JLabel text = new JLabel(GameRunner.diff);
+      //text.setBounds(3, 377, 287, 7);
+      //text.setOpaque(true);
+      //text.setForeground(new Color(211,224,207,255));
+      //text.setVisible(true);
 
-    g2.setStroke(new BasicStroke((float) 1));
+      //holder.gRun.add(text);
+    //}
   } 
 
   private static void drawSelectionSquare(Graphics2D g2, int curX, int curY){
